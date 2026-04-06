@@ -10,26 +10,10 @@ const SERVICES_LINKS = SERVICES.map((s) => ({
 
 export default function Footer() {
   return (
-    <footer className="bg-white border-t border-gray-200 mt-20">
-      
-      {/* CTA STRIP */}
-      <div className="bg-gray-900">
-        <div className="container-wide py-6 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="font-display font-semibold text-white text-lg text-center sm:text-left">
-            Ready to secure your business?
-          </p>
-
-          <Link
-            href="/contact"
-            className="bg-gold-500 hover:bg-gold-400 text-white font-medium px-6 py-2.5 text-sm rounded-md transition-all shadow-sm hover:shadow-md"
-          >
-            Book a Free Assessment →
-          </Link>
-        </div>
-      </div>
+    <footer className="bg-white border-t border-gray-200">
 
       {/* MAIN FOOTER */}
-      <div className="container-wide py-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12">
+      <div className="container-wide py-10 grid grid-cols-1 md:grid-cols-5 gap-6">
         
         {/* Brand */}
         <div className="space-y-4">
@@ -65,6 +49,8 @@ export default function Footer() {
             ))}
           </div>
         </div>
+
+        <div className="border-t border-gray-100 my-5 "></div>
 
         {/* Company */}
         <div>

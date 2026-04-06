@@ -9,6 +9,11 @@
   --font-display: 'Playfair Display', serif;
   --font-body: 'DM Sans', sans-serif;
   --font-mono: 'DM Mono', monospace;
+  --gold-primary: #C8960C;
+  --gold-dark: #A87A08;
+  --gold-light: #E8B840;
+  --navy-deep: #040D1A;
+  --navy-base: #071529;
 }
 
 /* ─── Base ───────────────────────── */
@@ -32,6 +37,13 @@
     font-family: var(--font-display);
     line-height: 1.1;
   }
+
+  /* Company signature element */
+  .inter5-mark {
+    font-family: var(--font-display);
+    font-weight: 900;
+    letter-spacing: -0.02em;
+  }
 }
 
 /* ─── Components ───────────────────────── */
@@ -41,7 +53,7 @@
   }
 
   .section-pad {
-    @apply py-16 md:py-24 lg:py-32;
+    @apply py-6 md:py-8 lg:py-10;
   }
 
   .gold-text {
@@ -50,10 +62,10 @@
 
   .btn-primary {
     @apply inline-flex items-center gap-2 
-           bg-gold-500 hover:bg-gold-400 
+           bg-gold-500 hover:bg-gold-600 
            text-white font-semibold 
            px-6 py-3 
-           rounded-none 
+           rounded-2xl 
            transition-all duration-200 
            text-sm tracking-wide uppercase;
   }
@@ -64,7 +76,7 @@
            text-gold-500 
            hover:bg-gold-500 hover:text-white 
            font-semibold px-6 py-3 
-           rounded-none 
+           rounded-2xl 
            transition-all duration-200 
            text-sm tracking-wide uppercase;
   }
@@ -87,11 +99,42 @@
     @apply text-xs font-mono tracking-[0.25em] 
            uppercase text-gold-500 mb-3;
   }
+
+  /* Company profile specific components */
+  .company-header {
+    @apply relative overflow-hidden bg-navy-900 text-white;
+  }
+
+  .company-header-gold-accent {
+    @apply absolute bottom-0 left-0 w-32 h-1 bg-gold-500;
+  }
+
+  .company-logo-mark {
+    @apply text-4xl md:text-5xl lg:text-6xl font-black tracking-tight;
+  }
+
+  .company-logo-superscript {
+    @apply text-gold-500 text-sm align-super;
+  }
 }
 
 /* ─── Utilities ───────────────────────── */
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+
+  /* Brand gradient utilities */
+  .bg-brand-gradient {
+    background: linear-gradient(135deg, var(--navy-deep) 0%, var(--navy-base) 100%);
+  }
+
+  .gold-gradient {
+    background: linear-gradient(135deg, var(--gold-primary) 0%, var(--gold-light) 100%);
+  }
+
+  /* Decorative elements */
+  .gold-underline {
+    @apply relative after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-gold-500 after:scale-x-0 after:origin-left after:transition-transform after:duration-300 hover:after:scale-x-100;
   }
 }

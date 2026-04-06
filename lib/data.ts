@@ -11,7 +11,7 @@ export const SERVICES = [
     id:          "managed-it",
     icon:        "🖥️",
     title:       "Managed IT Services",
-    slug:        "managed-it-services",
+    slug:        "managedit",
     tagline:     "Your IT department — without the overhead.",
     description: "We proactively monitor, maintain, and optimise your IT infrastructure, ensuring peak performance and reliable support for your business operations.",
     features:    ["Microsoft 365 Management", "ESET Endpoint Security", "Veeam-Powered Backup", "24/7 Helpdesk Support", "Monthly IT Health Report", "On-site & Remote Support"],
