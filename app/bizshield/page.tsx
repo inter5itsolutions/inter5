@@ -11,7 +11,6 @@ import {
   Clock, 
   TrendingUp,
   CheckCircle,
-  ArrowRight,
   Calendar,
   HardDrive,
   Archive,

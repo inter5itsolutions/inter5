@@ -12,7 +12,6 @@ import {
   Headphones, 
   FileText,
   CheckCircle,
-  ArrowRight,
   Calendar,
   ChevronRight
 } from "lucide-react";
@@ -245,7 +244,7 @@ export default function ManagedITPage() {
               >
                 <Shield className="w-5 h-5 hidden md:block" />
                   Click to Book Your Free Risk Check
-                <ArrowRight className="w-5 h-5" />
+                <ChevronRight className="w-5 h-5" />
               </Link>
             </motion.div>
           </motion.div>
