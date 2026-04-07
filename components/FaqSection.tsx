@@ -130,7 +130,7 @@ function FAQItem({ faq }: { faq: typeof FAQS[0]; index: number }) {
 
 export default function FAQSection() {
   const [filter, setFilter] = useState<string>("All");
-  const categories = ["All", ...new Set(FAQS.map(faq => faq.category))];
+  const categories = ["All", ...Array.from(new Set(FAQS.map(faq => faq.category)))];
   
   const filteredFAQs = filter === "All" 
     ? FAQS 
