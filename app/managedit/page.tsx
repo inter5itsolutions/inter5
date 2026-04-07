@@ -45,25 +45,25 @@ export default function ManagedITPage() {
               <span className="inline-block px-3 py-1 bg-gold-500/20 text-gold-400 rounded-full text-sm font-mono mb-6">
                 Managed IT Services
               </span>
-              <h1 className="text-4xl md:text-6xl lg:text-7xl font-display font-black mb-6 leading-tight">
+              <h1 className="text-3xl md:text-6xl font-display font-black mb-6 leading-tight">
                 Keep Your Business Running
-                <span className="text-gold-500 block mt-2">Without Costly Downtime</span>
+                <span className="text-gold-500 text-2xl md:text-4xl block mt-2">Without Costly Downtime</span>
               </h1>
-              <p className="text-xl md:text-2xl text-charcoal-300 mb-8 max-w-3xl mx-auto">
+              <p className="text-md md:text-xl text-charcoal-300 mb-8 max-w-3xl mx-auto">
                 Your business depends on technology. When it fails, everything stops.
               </p>
               <motion.div
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="inline-block"
+                className="flex flex-col md:flex-row justify-center"
               >
                 <Link
-                  href="/assessment"
-                  className="inline-flex items-center gap-3 bg-gold-500 hover:bg-gold-600 text-white px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-300 shadow-xl"
+                  href="/contact"
+                  className="inline-flex items-center text-[11px] md:text-xl gap-3 bg-red-500 hover:bg-red-600 text-white px-4 md:px-8 py-2 md:py-4 rounded-2xl font-semibold text-lg transition-all duration-300 shadow-xl"
                 >
-                  <Calendar className="w-5 h-5" />
-                  Book a Free 30-Minute Assessment
-                  <ArrowRight className="w-5 h-5" />
+                  <Calendar className="w-5 h-5 hidden md:block" />
+                   Book a Free 30-Minute Assessment
+                  <ArrowRight className="w-3 h-3 md:w-5 md:h-5 " />
                 </Link>
               </motion.div>
               <p className="text-charcoal-400 text-sm mt-4">No obligation. No commitment.</p>
@@ -82,11 +82,11 @@ export default function ManagedITPage() {
             variants={staggerContainer}
             className="max-w-4xl mx-auto"
           >
-            <motion.div variants={fadeInUp} className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-display font-bold text-charcoal-900 mb-4">
+            <motion.div variants={fadeInUp} className="text-center mb-8">
+              <h2 className="text-2xl md:text-4xl font-display font-bold text-charcoal-900 mb-4">
                 Downtime Isn't Just an Inconvenience
               </h2>
-              <p className="text-xl text-charcoal-600">
+              <p className="text-md text-charcoal-600">
                 It's a business risk that can lead to:
               </p>
             </motion.div>
@@ -103,15 +103,15 @@ export default function ManagedITPage() {
                   whileHover={{ y: -5 }}
                   className="bg-white p-6 rounded-xl shadow-lg text-center"
                 >
-                  <item.icon className="w-12 h-12 text-gold-500 mx-auto mb-4" />
-                  <h3 className="text-xl font-bold text-charcoal-900 mb-2">{item.title}</h3>
-                  <p className="text-charcoal-600">{item.description}</p>
+                  <item.icon className="h-8 w-8 md:w-12 md:h-12 text-gold-500 mx-auto mb-4" />
+                  <h3 className="text-md md:text-xl font-bold text-charcoal-900 mb-2">{item.title}</h3>
+                  <p className="text-sm md:text-base text-charcoal-600">{item.description}</p>
                 </motion.div>
               ))}
             </motion.div>
 
             <motion.div variants={fadeInUp} className="mt-8 p-4 bg-red-50 border-l-4 border-red-500 rounded-r-lg">
-              <p className="text-charcoal-700 font-medium">
+              <p className="text-sm md:text-lg text-charcoal-700 font-medium">
                 ⚠️ Even a few hours offline can create long-term setbacks for your business.
               </p>
             </motion.div>
@@ -120,7 +120,7 @@ export default function ManagedITPage() {
       </section>
 
       {/* Problem Section */}
-      <section className="py-20 bg-white">
+      <section className="py-5 bg-white">
         <div className="container-wide">
           <motion.div
             initial="hidden"
@@ -130,14 +130,14 @@ export default function ManagedITPage() {
             className="max-w-4xl mx-auto"
           >
             <motion.div variants={fadeInUp} className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-display font-bold text-charcoal-900 mb-4">
+              <h2 className="text-2xl md:text-4xl font-display font-bold text-charcoal-900 mb-4">
                 Nigerian SMEs Are Losing Money
               </h2>
-              <p className="text-xl text-charcoal-600">To Downtime & Disorganized IT</p>
+              <p className="text-sm md:text-xl text-charcoal-600">To Downtime & Disorganized IT</p>
             </motion.div>
 
             <motion.div variants={fadeInUp} className="bg-gradient-to-r from-charcoal-900 to-charcoal-800 text-white p-8 rounded-2xl mb-8">
-              <p className="text-lg mb-6">
+              <p className="text-base md:text-lg mb-6">
                 Most SMEs in Nigeria struggle with unreliable IT systems — slow computers, sudden network issues, 
                 unplanned downtime, and zero documentation.
               </p>
@@ -151,7 +151,7 @@ export default function ManagedITPage() {
                 ].map((issue, idx) => (
                   <div key={idx} className="flex items-center gap-3">
                     <div className="w-2 h-2 bg-gold-500 rounded-full" />
-                    <span>{issue}</span>
+                    <span className="text-sm md:text-base">{issue}</span>
                   </div>
                 ))}
               </div>
@@ -159,9 +159,9 @@ export default function ManagedITPage() {
 
             <motion.div variants={fadeInUp} className="text-center">
               <div className="inline-block p-4 bg-gold-50 rounded-full mb-4">
-                <Shield className="w-8 h-8 text-gold-500" />
+                <Shield className="w-5 h-5 md:w-8 md:h-8 text-gold-500" />
               </div>
-              <p className="text-lg text-charcoal-700 font-semibold">
+              <p className="text-md md:text-lg text-charcoal-700 font-semibold">
                 Without a professional IT structure, small problems quickly escalate into costly disruptions.
               </p>
             </motion.div>
@@ -179,10 +179,10 @@ export default function ManagedITPage() {
             variants={staggerContainer}
           >
             <motion.div variants={fadeInUp} className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-display font-bold text-charcoal-900 mb-4">
+              <h2 className="text-2xl md:text-4xl font-display font-bold text-charcoal-900 mb-4">
                 Your Dedicated IT Department
               </h2>
-              <p className="text-xl text-charcoal-600 max-w-3xl mx-auto">
+              <p className="text-md md:text-xl text-charcoal-600 max-w-3xl mx-auto">
                 Inter5 provides fully structured, proactive, and affordable Managed IT support 
                 that keeps your business running smoothly.
               </p>
@@ -203,17 +203,17 @@ export default function ManagedITPage() {
                   whileHover={{ scale: 1.05 }}
                   className={`${feature.color} p-6 rounded-xl shadow-md`}
                 >
-                  <feature.icon className="w-10 h-10 text-gold-600 mb-3" />
-                  <h3 className="text-lg font-bold text-charcoal-900">{feature.title}</h3>
+                  <feature.icon className="h-6 w-6 md:w-10 md:h-10 text-gold-600 mb-3" />
+                  <h3 className="text-md md:text-lg font-bold text-charcoal-900">{feature.title}</h3>
                 </motion.div>
               ))}
             </motion.div>
 
             <motion.div variants={fadeInUp} className="text-center">
               <div className="inline-block p-4 bg-white rounded-full shadow-lg mb-4">
-                <CheckCircle className="w-8 h-8 text-gold-500" />
+                <CheckCircle className="h-5 w-5 md:w-8 md:h-8 text-gold-500" />
               </div>
-              <p className="text-xl text-charcoal-800 font-semibold">
+              <p className="text-base md:text-xl text-charcoal-800 font-semibold">
                 Inter5 becomes your dependable IT partner, ensuring continuous operations, 
                 reduced downtime, and predictable IT performance.
               </p>
@@ -223,7 +223,7 @@ export default function ManagedITPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-charcoal-900 text-white">
+      <section className="py-10 bg-charcoal-900 text-white">
         <div className="container-wide text-center">
           <motion.div
             initial="hidden"
@@ -231,19 +231,19 @@ export default function ManagedITPage() {
             viewport={{ once: true }}
             variants={fadeInUp}
           >
-            <h2 className="text-3xl md:text-4xl font-display font-bold mb-4">
-              Book a Free 30-Minute IT Assessment
+            <h2 className="text-2xl md:text-4xl font-display font-bold mb-4">
+              Book a Free Cybersecurity Risk Check
             </h2>
-            <p className="text-xl text-charcoal-300 mb-8 max-w-2xl mx-auto">
-              Discover hidden risks and inefficiencies slowing down your business.
+            <p className="text-sm md:text-xl text-charcoal-300 mb-8 max-w-2xl mx-auto">
+              Get a simple, non-technical review of vulnerabilities in your business.
             </p>
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
               <Link
                 href="/assessment"
-                className="inline-flex items-center gap-3 bg-gold-500 hover:bg-gold-600 text-white px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-300"
+                className="inline-flex items-center gap-3 bg-red-500 hover:bg-red-600 text-white md:px-8 px-4 md:py-4 py-2 rounded-lg font-semibold text-[11px] md:text-lg transition-all duration-300"
               >
-                <Calendar className="w-5 h-5" />
-                Click to Book Your Free Assessment
+                <Shield className="w-5 h-5 hidden md:block" />
+                  Click to Book Your Free Risk Check
                 <ArrowRight className="w-5 h-5" />
               </Link>
             </motion.div>

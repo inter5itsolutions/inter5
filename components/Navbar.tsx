@@ -178,7 +178,7 @@ export default function Navbar() {
 
           <Link
             href="/contact"
-            className="inline-flex items-center gap-2 bg-gray-900 hover:bg-black text-white text-sm font-medium px-5 py-2.5 rounded-md transition-all duration-200 shadow-sm hover:shadow-md"
+            className="inline-flex items-center gap-2 bg-gold-500 hover:bg-gold-300 text-white text-sm font-medium px-5 py-2.5 rounded-md transition-all duration-200 shadow-sm hover:shadow-md"
           >
             Get Started
           </Link>
