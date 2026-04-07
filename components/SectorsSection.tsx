@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, Variants } from "framer-motion";
 import { SECTORS } from "@/lib/data";
 import SectionHeader from "@/components/SectionHeader";
 import AnimatedSection from "@/components/AnimatedSection";
@@ -37,7 +37,7 @@ const containerVariants = {
   },
 };
 
-const cardVariants = {
+const cardVariants: Variants = {
   hidden: { opacity: 0, x: -20 },
   visible: {
     opacity: 1,
