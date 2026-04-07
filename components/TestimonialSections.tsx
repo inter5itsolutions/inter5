@@ -43,7 +43,7 @@ const cardVariants = {
   hover: {
     y: -8,
     transition: {
-      type: "spring",
+      type: "spring" as const,
       stiffness: 400,
       damping: 25,
     },
@@ -54,7 +54,7 @@ const starVariants = {
   hidden: { scale: 0 },
   visible: (i: number) => ({
     scale: 1,
-    transition: { delay: i * 0.05, type: "spring", stiffness: 200 },
+    transition: { delay: i * 0.05, type: "spring" as const, stiffness: 200 },
   }),
 };
 
@@ -88,6 +88,10 @@ export default function TestimonialsSection() {
     return TESTIMONIALS.slice(start, end);
   };
 
+  const nextSlide = () => {
+    setCurrentIndex((prev) => (prev + 1) % totalSlides);
+  };
+  
   // Auto-play functionality
   useEffect(() => {
     let interval: ReturnType<typeof setInterval>;
@@ -97,11 +101,9 @@ export default function TestimonialsSection() {
       }, 5000);
     }
     return () => clearInterval(interval);
-  }, [isAutoPlaying, isHovered, currentIndex]);
+  }, [isAutoPlaying, isHovered, currentIndex, nextSlide]);
 
-  const nextSlide = () => {
-    setCurrentIndex((prev) => (prev + 1) % totalSlides);
-  };
+  
 
   const prevSlide = () => {
     setCurrentIndex((prev) => (prev - 1 + totalSlides) % totalSlides);
