@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { easeInOut, motion } from "framer-motion";
 import { STATS, PARTNERS } from "@/lib/data";
 import { SITE } from "@/lib/utils";
 
@@ -11,7 +11,7 @@ const container = {
 
 const item = {
   hidden: { opacity: 0, y: 24 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } },
+  show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: easeInOut } },
 };
 
 export default function HeroSection() {
