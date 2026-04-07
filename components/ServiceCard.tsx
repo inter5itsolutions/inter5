@@ -4,13 +4,14 @@ import type { SERVICES } from "@/lib/data";
 
 type Service = (typeof SERVICES)[number];
 
+
 interface Props {
   service:  Service;
   featured?: boolean;
   showTiers?: boolean;
 }
 
-export default function ServiceCard({ service, featured, showTiers, slug }: Props) {
+export default function ServiceCard({ service, featured, showTiers }: Props) {
   return (
     <div className={cn(
       "card-dark p-6 h-[560px] rounded-lg md:p-8 flex flex-col group ring-2 ring-navy-600",
@@ -39,6 +40,7 @@ export default function ServiceCard({ service, featured, showTiers, slug }: Prop
           <li key={f} className="flex items-center gap-2 text-sm text-slate-800">
             <span className="w-1.5 h-1.5 bg-gold-500 flex-shrink-0" />
             {f}
+            
           </li>
         ))}
       </ul>
@@ -51,20 +53,21 @@ export default function ServiceCard({ service, featured, showTiers, slug }: Prop
               <div key={t.name} className="flex items-center justify-between text-sm">
                 <span className="text-slate-400">{t.name} <span className="text-slate-500 text-xs">· {t.target}</span></span>
                 <span className="font-mono text-gold-400 font-medium">{t.price}<span className="text-slate-500 text-xs">{t.period}</span></span>
+                
               </div>
             ))}
           </div>
         </div>
       )}
 
-      <div className="mt-auto">
+      {<div className="mt-auto">
         <Link
-          href={`/${slug}`}
+          href={`/${service.slug}`}
           className="btn-outline w-full justify-center text-md rounded-lg"
         >
           Learn More 
         </Link>
-      </div>
+      </div>}
     </div>
   );
 }

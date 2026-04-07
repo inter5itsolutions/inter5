@@ -23,7 +23,7 @@ export default function ServicesPreview() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {SERVICES.map((service, i) => (
             <AnimatedSection key={service.id} delay={i * 0.1}>
-              <ServiceCard slug={service.slug} service={service} featured={service.id === "cybershield"} />
+              <ServiceCard service={service} featured={service.id === "cybershield"}  />
             </AnimatedSection>
           ))}
         </div>
