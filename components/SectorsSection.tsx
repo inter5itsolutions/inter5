@@ -1,40 +1,3 @@
-// import { SECTORS } from "@/lib/data";
-// import SectionHeader from "@/components/SectionHeader";
-// import AnimatedSection from "@/components/AnimatedSection";
-
-// export default function SectorsSection() {
-//   return (
-//     <section className="section-pad bg-navy-800/40 border-y border-navy-700/40">
-//       <div className="container-wide">
-//         <AnimatedSection className="mb-12">
-//           <SectionHeader
-//             label="Industries We Serve"
-//             title="Built for Nigerian business sectors."
-//             highlight="Nigerian business sectors."
-//             subtitle="We speak the language of manufacturing, oil & gas, construction, and beyond — delivering IT solutions that fit your operational reality."
-//           />
-//         </AnimatedSection>
-
-//         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-//           {SECTORS.map((sector, i) => (
-//             <AnimatedSection key={sector.name} delay={i * 0.08}>
-//               <div className="card-dark p-5 flex gap-4 group cursor-default">
-//                 <span className="text-2xl flex-shrink-0 mt-0.5">{sector.icon}</span>
-//                 <div>
-//                   <h3 className="text-white font-semibold text-base mb-1 group-hover:text-gold-400 transition-colors">
-//                     {sector.name}
-//                   </h3>
-//                   <p className="text-slate-400 text-sm leading-relaxed">{sector.desc}</p>
-//                 </div>
-//               </div>
-//             </AnimatedSection>
-//           ))}
-//         </div>
-//       </div>
-//     </section>
-//   );
-// }
-
 "use client";
 
 import { motion } from "framer-motion";
@@ -48,11 +11,12 @@ import {
   ShoppingBag, 
   Building, 
   TrendingUp,
-  ArrowRight
+  ArrowRight,
+  LucideIcon
 } from "lucide-react";
 
 // Map sector icons to Lucide icons
-const sectorIcons: Record<string, any> = {
+const sectorIcons: Record<string, LucideIcon> = {
   "🏭": Factory,
   "🛢️": Droplet,
   "🏗️": HardHat,

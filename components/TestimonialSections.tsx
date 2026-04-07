@@ -16,6 +16,13 @@ import {
   Play
 } from "lucide-react";
 
+
+type Testimonial = {
+  quote: string;
+  author: string;
+  sector: string;
+};
+
 // Animation variants
 const cardVariants = {
   hidden: { opacity: 0, scale: 0.9 },
@@ -83,7 +90,7 @@ export default function TestimonialsSection() {
 
   // Auto-play functionality
   useEffect(() => {
-    let interval: NodeJS.Timeout;
+    let interval: ReturnType<typeof setInterval>;
     if (isAutoPlaying && !isHovered) {
       interval = setInterval(() => {
         nextSlide();
@@ -251,7 +258,7 @@ export default function TestimonialsSection() {
 
 // Testimonial Card Component
 function TestimonialCard({ testimonial, index }: { 
-  testimonial: any; 
+  testimonial: Testimonial; 
   index: number;
 }) {
   const [isExpanded, setIsExpanded] = useState(false);
