@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, Variants } from "framer-motion";
 import { TESTIMONIALS } from "@/lib/data";
 import SectionHeader from "@/components/SectionHeader";
 import AnimatedSection from "@/components/AnimatedSection";
@@ -24,7 +24,7 @@ type Testimonial = {
 };
 
 // Animation variants
-const cardVariants = {
+const cardVariants: Variants = {
   hidden: { opacity: 0, scale: 0.9 },
   visible: {
     opacity: 1,
