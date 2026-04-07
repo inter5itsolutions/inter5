@@ -415,7 +415,7 @@ export default function BookAssessmentForm() {
       </button>
 
       <p className="text-center text-xs text-gray-500 mt-4">
-        By submitting this form, you agree to our privacy policy. We'll never share your information.
+        By submitting this form, you agree to our privacy policy. We will never share your information.
       </p>
     </form>
   );

@@ -87,7 +87,7 @@ export default function BizShieldPage() {
               <h2 className="text-3xl md:text-4xl font-display font-bold text-charcoal-900 mb-4">
                 Data Loss Is Not Just Technical
               </h2>
-              <p className="text-xl text-charcoal-600">It's catastrophic and can lead to:</p>
+              <p className="text-xl text-charcoal-600">It is catastrophic and can lead to:</p>
             </motion.div>
 
             <motion.div variants={staggerContainer} className="grid md:grid-cols-3 gap-6">

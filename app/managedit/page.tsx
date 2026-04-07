@@ -84,10 +84,10 @@ export default function ManagedITPage() {
           >
             <motion.div variants={fadeInUp} className="text-center mb-8">
               <h2 className="text-2xl md:text-4xl font-display font-bold text-charcoal-900 mb-4">
-                Downtime Isn't Just an Inconvenience
+                Downtime Is not Just an Inconvenience
               </h2>
               <p className="text-md text-charcoal-600">
-                It's a business risk that can lead to:
+                It is a business risk that can lead to:
               </p>
             </motion.div>
 

@@ -137,7 +137,7 @@ export default function CyberShieldPage() {
 
             <motion.div variants={fadeInUp} className="bg-gradient-to-r from-red-900 to-red-800 text-white p-8 rounded-2xl mb-8">
               <p className="text-md mb-6">
-                Most Nigerian businesses mistakenly believe they are "too small" to be hacked — 
+                Most Nigerian businesses mistakenly believe they are too small to be hacked — 
                 until ransomware, phishing, or data theft happens.
               </p>
               <div className="grid md:grid-cols-2 gap-4">

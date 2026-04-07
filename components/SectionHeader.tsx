@@ -10,7 +10,7 @@ interface Props {
   className?: string;
 }
 
-export default function SectionHeader({ label, title, highlight, subtitle, center, light, className }: Props) {
+export default function SectionHeader({ label, title, highlight, subtitle, center, className }: Props) {
   const titleParts = highlight ? title.split(highlight) : null;
 
   return (

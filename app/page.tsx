@@ -6,9 +6,6 @@ import WhyInter5         from "@/components/WhyInter5";
 import SectorsSection    from "@/components/SectorsSection";
 import TestimonialsSection from "@/components/TestimonialSections";
 import CTABanner         from "@/components/CTABanner";
-import FAQAccordion      from "@/components//FAQAccordion";
-import SectionHeader     from "@/components//SectionHeader";
-import AnimatedSection   from "@/components//AnimatedSection";
 import FAQSection from "@/components/FaqSection";
 
 export const metadata: Metadata = buildMetadata({

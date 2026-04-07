@@ -21,7 +21,7 @@ export default function BookAssessmentPage() {
               Free Assessment
             </span>
             <h1 className="text-4xl md:text-5xl font-display font-bold text-gray-900 mb-6">
-              Let's evaluate your 
+              Let us evaluate your 
               <span className="text-amber-600"> IT infrastructure</span>
             </h1>
             <p className="text-lg text-gray-600 leading-relaxed">

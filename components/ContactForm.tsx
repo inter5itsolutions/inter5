@@ -35,7 +35,7 @@ export default function ContactForm() {
       >
         <div className="text-5xl mb-4">✅</div>
         <h3 className="font-display font-bold text-white text-2xl mb-2">Message Received</h3>
-        <p className="text-slate-400 text-sm">We'll get back to you within one business day.</p>
+        <p className="text-slate-400 text-sm">We will get back to you within one business day.</p>
       </motion.div>
     );
   }

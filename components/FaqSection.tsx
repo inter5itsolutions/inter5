@@ -76,7 +76,7 @@ const categoryColors: Record<string, string> = {
   Compliance: "bg-red-100 text-red-700",
 };
 
-function FAQItem({ faq, index }: { faq: typeof FAQS[0]; index: number }) {
+function FAQItem({ faq }: { faq: typeof FAQS[0]; index: number }) {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
