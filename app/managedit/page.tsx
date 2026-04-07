@@ -13,7 +13,8 @@ import {
   FileText,
   CheckCircle,
   ArrowRight,
-  Calendar
+  Calendar,
+  ChevronRight
 } from "lucide-react";
 
 const fadeInUp = {
@@ -59,11 +60,11 @@ export default function ManagedITPage() {
               >
                 <Link
                   href="/contact"
-                  className="inline-flex items-center text-[11px] md:text-xl gap-3 bg-red-500 hover:bg-red-600 text-white px-4 md:px-8 py-2 md:py-4 rounded-2xl font-semibold text-lg transition-all duration-300 shadow-xl"
+                  className="inline-flex items-center text-[13px] md:text-xl gap-3 bg-red-500 hover:bg-red-600 text-white px-4 md:px-8 py-2 md:py-4 rounded-2xl font-semibold transition-all duration-300 shadow-xl"
                 >
                   <Calendar className="w-5 h-5 hidden md:block" />
                    Book a Free 30-Minute Assessment
-                  <ArrowRight className="w-3 h-3 md:w-5 md:h-5 " />
+                  <ChevronRight className="w-3 h-3 md:w-5 md:h-5 " />
                 </Link>
               </motion.div>
               <p className="text-charcoal-400 text-sm mt-4">No obligation. No commitment.</p>

@@ -143,7 +143,6 @@ export default function TestimonialsSection() {
             label="Client Feedback"
             title="What our clients say."
             highlight="clients say"
-            subtitle="Don't just take our word for it — hear from businesses we've helped transform"
             center
           />
         </AnimatedSection>
@@ -231,28 +230,7 @@ export default function TestimonialsSection() {
           </div>
         )}
 
-        {/* Rating Summary */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.4, duration: 0.6 }}
-          className="mt-16 pt-8 text-center"
-        >
-          <div className="inline-flex flex-wrap items-center justify-center gap-3 bg-white shadow-lg rounded-full px-6 py-3">
-            <div className="flex items-center gap-1">
-              {[...Array(5)].map((_, i) => (
-                <Star key={i} className="w-4 h-4 fill-gold-500 text-gold-500" />
-              ))}
-            </div>
-            <span className="text-charcoal-700 font-semibold">5.0</span>
-            <span className="text-charcoal-500 text-sm">out of 5</span>
-            <div className="w-px h-4 bg-charcoal-300 mx-2" />
-            <span className="text-charcoal-600 text-sm">
-              Based on {TESTIMONIALS.length * 3}+ client reviews
-            </span>
-          </div>
-        </motion.div>
+       
       </div>
     </motion.section>
   );

@@ -2,7 +2,7 @@
 export const STATS = [
   { value: "$2.17B",  label: "Nigeria IT Market (2024)" },
   { value: "13.18%",  label: "Market CAGR to 2029" },
-  { value: "3,759",   label: "Avg weekly cyber-attacks per Nigerian org" },
+  { value: "3,759",   label: "Avg weekly cyber attacks per Nigerian org" },
   { value: "60%",     label: "Nigerian orgs hit by cyber incidents" },
 ];
 
@@ -12,13 +12,13 @@ export const SERVICES = [
     icon:        "🖥️",
     title:       "Managed IT Services",
     slug:        "managedit",
-    tagline:     "Your IT department — without the overhead.",
+    tagline:     "Your IT department without the overhead.",
     description: "We proactively monitor, maintain, and optimise your IT infrastructure, ensuring peak performance and reliable support for your business operations.",
     features:    ["Microsoft 365 Management", "ESET Endpoint Security", "Veeam-Powered Backup", "24/7 Helpdesk Support", "Monthly IT Health Report", "On-site & Remote Support"],
     tiers: [
-      { name: "Starter",  target: "1–10 staff",   price: "₦120,000", period: "/mo" },
-      { name: "Growth",   target: "11–50 staff",  price: "₦200,000", period: "/mo" },
-      { name: "Scale",    target: "51–200 staff", price: "₦300,000", period: "/mo" },
+      { name: "Starter",  target: "1 - 10 staff",   price: "₦120,000", period: "/mo" },
+      { name: "Growth",   target: "11 - 50 staff",  price: "₦200,000", period: "/mo" },
+      { name: "Scale",    target: "51 - 200 staff", price: "₦300,000", period: "/mo" },
     ],
     color: "from-navy-700 to-navy-900",
     accent: "#C8960C",
@@ -29,7 +29,7 @@ export const SERVICES = [
     title:       "CyberShield",
     slug:        "cybershield",
     tagline:     "World-class security. SME-accessible pricing.",
-    description: "A dedicated managed security service for Nigerian industrial SMEs — built on Microsoft Azure, ESET, and deep cybersecurity expertise.",
+    description: "A dedicated managed security service for Nigerian industrial SMEs built on Microsoft Azure, ESET, and deep cybersecurity expertise.",
     features:    ["Cybersecurity Risk Audit", "Azure Cloud Management", "Identity & Access Management", "ESET Managed Endpoint Security", "Security Awareness Training", "NDPA Compliance Advisory"],
     tiers: [
       { name: "Essentials", target: "Basic protection",  price: "₦200,000", period: "/mo" },
@@ -44,12 +44,12 @@ export const SERVICES = [
     title:       "BizShield",
     slug:        "bizshield",
     tagline:     "Recover in hours, not weeks.",
-    description: "Veeam-powered backup and disaster recovery — packaged into an affordable monthly service so your business survives ransomware, power failures, and data loss.",
+    description: "Veeam-powered backup and disaster recovery packaged into an affordable monthly service so your business survives ransomware, power failures, and data loss.",
     features:    ["Automated Daily Backups", "Off-site Cloud Storage", "Monthly Recovery Testing", "Written Business Continuity Plan", "Ransomware Protection (Immutable)", "Guaranteed Recovery Time"],
     tiers: [
-      { name: "Protect",   target: "1–20 staff",   price: "₦120,000", period: "/mo" },
-      { name: "Recover",   target: "21–80 staff",  price: "₦250,000", period: "/mo" },
-      { name: "Resilient", target: "81–200 staff", price: "₦600,000", period: "/mo" },
+      { name: "Protect",   target: "1 - 20 staff",   price: "₦120,000", period: "/mo" },
+      { name: "Recover",   target: "21 - 80 staff",  price: "₦250,000", period: "/mo" },
+      { name: "Resilient", target: "81 - 200 staff", price: "₦600,000", period: "/mo" },
     ],
     color: "from-slate-700 to-slate-900",
     accent: "#C8960C",
@@ -61,7 +61,7 @@ export const SERVICES = [
     slug:        "securelearn",
     tagline:     "Train your team. Close the human gap.",
     description: "Structured security awareness training that turns your staff from your biggest vulnerability into your first line of defence.",
-    features:    ["Phishing Recognition Workshops", "Password Hygiene Training", "Incident Reporting Drills", "NDPA Compliance Briefings", "On-site & Virtual Delivery", "Certificates of Completion"],
+    features:    ["Phishing Recognition Workshops", "Password Hygiene Training", "Incident Reporting Drills", "NDPA Compliance Briefings", "Onsite & Virtual Delivery", "Certificates of Completion"],
     tiers: [
       { name: "Session",   target: "Up to 20 staff", price: "₦150,000", period: "/session" },
       { name: "Programme", target: "Annual plan",    price: "₦800,000", period: "/year" },
@@ -137,7 +137,7 @@ export const SECTORS = [
 
 export const TESTIMONIALS = [
   {
-    quote:  "Inter5 gave us something no other IT company had offered — a tested disaster recovery plan and a team that picked up the phone when we needed them.",
+    quote:  "Inter5 gave us something no other IT company had offered a tested disaster recovery plan and a team that picked up the phone when we needed them.",
     author: "Head of IT, Manufacturing Company, Lagos",
     sector: "Manufacturing",
   },
@@ -151,7 +151,7 @@ export const TESTIMONIALS = [
 export const FAQS = [
   {
     q: "Do you only serve large businesses?",
-    a: "No — we built Inter5 specifically for SMEs. Our packages start at ₦120,000/month and are designed for businesses with 1–200 staff. Enterprise pricing is available for larger clients.",
+    a: "No; we built Inter5 specifically for SMEs. Our packages start at ₦120,000/month and are designed for businesses with 1 - 200 staff. Enterprise pricing is available for larger clients.",
   },
   {
     q: "Are your prices in naira or USD?",

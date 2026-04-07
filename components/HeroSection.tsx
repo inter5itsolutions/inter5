@@ -46,14 +46,14 @@ export default function HeroSection() {
           {/* CTAs */}
           <motion.div variants={item} className="flex flex-col  sm:flex-row gap-4 mb-8">
             <Link
-              href="/contact"
-              className="btn-primary  bg-gold-500 text-white hover:bg-gold-400"
+              href="/assessment"
+              className="btn-primary inline-flex items-center justify-center  bg-gold-500 text-white hover:bg-gold-400"
             >
               Book a Free Assessment 
             </Link>
             <Link
-              href="/services"
-              className="btn-outline border  border-gold-500 text-gold-500 hover:bg-gold-500 hover:text-white"
+              href="/bizshield"
+              className="inline-flex items-center justify-center btn-outline border  border-gold-500 text-gold-500 hover:bg-gold-500 hover:text-white"
             >
               Explore Services
             </Link>

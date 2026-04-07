@@ -25,23 +25,6 @@ export default function HomePage() {
       <TestimonialsSection />
       {/* <FAQSection /> */}
 
-      {/* FAQ */}
-      {/* <section className="section-pad bg-navy-200">
-        <div className="container-wide grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-          <AnimatedSection>
-            <SectionHeader
-              label="Common Questions"
-              title="Answers before you even ask."
-              highlight="Answers"
-              subtitle="Everything Nigerian SME owners typically ask before starting a conversation with us."
-            />
-          </AnimatedSection>
-          <AnimatedSection delay={0.15}>
-            <FAQAccordion />
-          </AnimatedSection>
-        </div>
-      </section>
-       */}
       
       <CTABanner />
     </>

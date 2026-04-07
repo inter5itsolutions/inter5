@@ -24,11 +24,11 @@ export const SITE = {
   logoText:    "I5",
 
   /** Primary tagline — used in hero section and OG metadata */
-  tagline:     "Enterprise-Grade IT. SME-Ready Pricing.",
+  tagline:     "Enterprise Grade IT. SME Ready Pricing.",
 
   /** Meta description — used as default for all pages in layout.tsx */
   description:
-    "Inter5 IT Solutions delivers world-class cybersecurity, disaster recovery, and managed IT services to Nigerian businesses — at naira-priced, SME-accessible rates.",
+    "Inter5 IT Solutions delivers world-class cybersecurity, disaster recovery, and managed IT services to Nigerian businesses at naira-priced, SME accessible rates.",
 
   /** Canonical production URL — used in sitemap, robots, canonical tags */
   url:         "https://inter5it.com",
