@@ -6,7 +6,7 @@ import WhyInter5         from "@/components/WhyInter5";
 import SectorsSection    from "@/components/SectorsSection";
 import TestimonialsSection from "@/components/TestimonialSections";
 import CTABanner         from "@/components/CTABanner";
-import FAQSection from "@/components/FaqSection";
+// import FAQSection from "@/components/FaqSection";
 
 export const metadata: Metadata = buildMetadata({
   title:       "Inter5 IT Solutions — Managed IT, Cybersecurity & Disaster Recovery in Nigeria",
@@ -23,7 +23,7 @@ export default function HomePage() {
       <WhyInter5 />
       <SectorsSection />
       <TestimonialsSection />
-      <FAQSection />
+      {/* <FAQSection /> */}
 
       {/* FAQ */}
       {/* <section className="section-pad bg-navy-200">
