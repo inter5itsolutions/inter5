@@ -39,7 +39,7 @@ const cardVariants: Variants = {
   hover: {
     y: -8,
     transition: {
-      type: "spring",
+      type: "spring" as const,
       stiffness: 400,
       damping: 25,
     },
@@ -50,7 +50,7 @@ const starVariants = {
   hidden: { scale: 0 },
   visible: (i: number) => ({
     scale: 1,
-    transition: { delay: i * 0.05, type: "spring", stiffness: 200 },
+    transition: { delay: i * 0.05, type: "spring" as const, stiffness: 200 },
   }),
 };
 
