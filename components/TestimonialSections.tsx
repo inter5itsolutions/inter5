@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import { motion, AnimatePresence, Variants, PanInfo } from "framer-motion";
+import { motion, Variants, PanInfo } from "framer-motion";
 import { TESTIMONIALS } from "@/lib/data";
 import SectionHeader from "@/components/SectionHeader";
 import AnimatedSection from "@/components/AnimatedSection";
@@ -14,7 +14,6 @@ import {
   MessageCircle,
   Pause,
   Play,
-  Sparkles
 } from "lucide-react";
 
 type Testimonial = {

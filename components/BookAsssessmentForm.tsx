@@ -325,10 +325,11 @@ export default function BookAssessmentForm() {
       } else {
         throw new Error("Form submission failed");
       }
-    } catch (error) {
+    } catch {
       setModalType("error");
       setModalMessage("Something went wrong. Please try again or contact us directly at info@inter5it.com");
       setModalOpen(true);
+      
     } finally {
       setIsSubmitting(false);
     }
