@@ -16,7 +16,7 @@ export default function CTABanner({
   href     = "/assessment",
 }: Props) {
   return (
-    <section className="py-16 md:py-20 bg-gold-500 relative overflow-hidden">
+    <section className="py-16 md:py-20 bg-brand-orange relative overflow-hidden">
       {/* Subtle grid overlay */}
       <div className="absolute inset-0 bg-grid-pattern bg-grid opacity-10 pointer-events-none" />
 
@@ -29,7 +29,7 @@ export default function CTABanner({
         </div>
         <Link
           href={href}
-          className="flex-shrink-0 flex items-center bg-navy-900 hover:bg-navy-700 text-gold-500 font-semibold px-8 py-4 text-sm tracking-wide uppercase transition-colors"
+          className="flex-shrink-0 flex items-center bg-light-blue hover:bg-navy-700 text-gold-500 font-semibold px-8 py-4 text-sm tracking-wide uppercase transition-colors"
         >
           {cta}
           <ChevronRight className="h-5 "/>

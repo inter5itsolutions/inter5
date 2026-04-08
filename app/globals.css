@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -6,14 +6,15 @@
 
 /* ─── Root ───────────────────────── */
 :root {
-  --font-display: 'Playfair Display', serif;
-  --font-body: 'DM Sans', sans-serif;
-  --font-mono: 'DM Mono', monospace;
-  --gold-primary: #C8960C;
-  --gold-dark: #A87A08;
-  --gold-light: #E8B840;
-  --navy-deep: #040D1A;
-  --navy-base: #071529;
+  --font-display: "Nunito", sans-serif;
+  --font-body: "Nunito", sans-serif;
+  --font-mono: "Nunito", sans-serif;
+  
+  /* Your four core colors */
+  --dark-blue: #023047;
+  --light-blue: #8ECAE6;
+  --brand-orange: #FB8500;
+  --teal-blue: #219EBC;
 }
 
 /* ─── Base ───────────────────────── */
@@ -29,7 +30,7 @@
 
   body {
     background: #ffffff;
-    color: #171717;
+    color: #111827;
     overflow-x: hidden;
   }
 
@@ -42,7 +43,7 @@
   .inter5-mark {
     font-family: var(--font-display);
     font-weight: 900;
-    letter-spacing: -0.02em;
+    letter-spacing: 0.02em;
   }
 }
 
@@ -56,13 +57,14 @@
     @apply py-6 md:py-8 lg:py-10;
   }
 
-  .gold-text {
-    @apply text-gold-500;
+  /* Updated to use brand-orange instead of gold */
+  .brand-orange-text {
+    @apply text-brand-orange;
   }
 
   .btn-primary {
     @apply inline-flex items-center gap-2 
-           bg-gold-500 hover:bg-gold-600 
+           bg-brand-orange hover:bg-brand-orange/90 
            text-white font-semibold 
            px-6 py-3 
            rounded-2xl 
@@ -72,9 +74,9 @@
 
   .btn-outline {
     @apply inline-flex items-center gap-2 
-           border border-gold-500 
-           text-gold-500 
-           hover:bg-gold-500 hover:text-white 
+           border border-brand-orange 
+           text-brand-orange 
+           hover:bg-brand-orange hover:text-white 
            font-semibold px-6 py-3 
            rounded-2xl 
            transition-all duration-200 
@@ -83,38 +85,38 @@
 
   .card {
     @apply bg-white border border-gray-200 
-           hover:border-gold-500/40 
+           hover:border-brand-orange/40 
            transition-colors duration-300;
   }
 
   .tag {
     @apply inline-block text-xs font-mono 
            tracking-widest uppercase 
-           text-gold-500 
-           border border-gold-500/30 
+           text-brand-orange 
+           border border-brand-orange/30 
            px-2 py-1;
   }
 
   .section-label {
     @apply text-xs font-mono tracking-[0.25em] 
-           uppercase text-gold-500 mb-3;
+           uppercase text-brand-orange mb-3;
   }
 
   /* Company profile specific components */
   .company-header {
-    @apply relative overflow-hidden bg-navy-900 text-white;
+    @apply relative overflow-hidden bg-dark-blue text-white;
   }
 
   .company-header-gold-accent {
-    @apply absolute bottom-0 left-0 w-32 h-1 bg-gold-500;
+    @apply absolute bottom-0 left-0 w-32 h-1 bg-brand-orange;
   }
 
   .company-logo-mark {
-    @apply text-4xl md:text-5xl lg:text-6xl font-black tracking-tight;
+    @apply text-4xl md:text-5xl lg:text-6xl font-black tracking-tight text-dark-blue;
   }
 
   .company-logo-superscript {
-    @apply text-gold-500 text-sm align-super;
+    @apply text-brand-orange text-sm align-super;
   }
 }
 
@@ -124,17 +126,75 @@
     text-wrap: balance;
   }
 
-  /* Brand gradient utilities */
+  /* Brand gradient utilities using your colors */
   .bg-brand-gradient {
-    background: linear-gradient(135deg, var(--navy-deep) 0%, var(--navy-base) 100%);
+    background: linear-gradient(135deg, #023047 0%, #219EBC 100%);
   }
 
-  .gold-gradient {
-    background: linear-gradient(135deg, var(--gold-primary) 0%, var(--gold-light) 100%);
+  .bg-brand-orange-gradient {
+    background: linear-gradient(135deg, #FB8500 0%, #FB8500 100%);
+  }
+
+  .bg-light-blue-gradient {
+    background: linear-gradient(135deg, #8ECAE6 0%, #219EBC 100%);
+  }
+
+  .brand-orange-gradient {
+    background: linear-gradient(135deg, #FB8500 0%, #FB8500 100%);
   }
 
   /* Decorative elements */
-  .gold-underline {
-    @apply relative after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-gold-500 after:scale-x-0 after:origin-left after:transition-transform after:duration-300 hover:after:scale-x-100;
+  .brand-orange-underline {
+    @apply relative after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-brand-orange after:scale-x-0 after:origin-left after:transition-transform after:duration-300 hover:after:scale-x-100;
+  }
+
+  /* Color utility classes for your four colors */
+  .bg-dark-blue {
+    background-color: #023047;
+  }
+  
+  .text-dark-blue {
+    color: #023047;
+  }
+  
+  .bg-light-blue {
+    background-color: #8ECAE6;
+  }
+  
+  .text-light-blue {
+    color: #8ECAE6;
+  }
+  
+  .bg-brand-orange {
+    background-color: #FB8500;
+  }
+  
+  .text-brand-orange {
+    color: #FB8500;
+  }
+  
+  .bg-teal-blue {
+    background-color: #219EBC;
+  }
+  
+  .text-teal-blue {
+    color: #219EBC;
+  }
+
+  /* Border utilities */
+  .border-brand-orange {
+    border-color: #FB8500;
+  }
+  
+  .border-dark-blue {
+    border-color: #023047;
+  }
+  
+  .border-light-blue {
+    border-color: #8ECAE6;
+  }
+  
+  .border-teal-blue {
+    border-color: #219EBC;
   }
 }

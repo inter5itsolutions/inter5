@@ -6,6 +6,17 @@ export const STATS = [
   { value: "60%",     label: "Nigerian orgs hit by cyber incidents" },
 ];
 
+
+export const SITE = {
+  name: "Inter5 IT Solutions",
+  shortName: "Inter5",
+  logoText: "I5", // Fallback text if image not available
+  logoImage: "/inter5_logo.png", // Add your logo path here
+  description: "Enterprise-grade IT solutions for Nigerian SMEs",
+  phone1: "+234 123 456 7890",
+  // ... other site config
+};
+
 export const SERVICES = [
   {
     id:          "managed-it",
@@ -58,7 +69,7 @@ export const SERVICES = [
     id:          "securelearn",
     icon:        "🎓",
     title:       "SecureLearn",
-    slug:        "securelearn",
+    slug:        "#securelearn",
     tagline:     "Train your team. Close the human gap.",
     description: "Structured security awareness training that turns your staff from your biggest vulnerability into your first line of defence.",
     features:    ["Phishing Recognition Workshops", "Password Hygiene Training", "Incident Reporting Drills", "NDPA Compliance Briefings", "Onsite & Virtual Delivery", "Certificates of Completion"],
@@ -136,6 +147,16 @@ export const SECTORS = [
 ];
 
 export const TESTIMONIALS = [
+  {
+    quote:  "Inter5 gave us something no other IT company had offered a tested disaster recovery plan and a team that picked up the phone when we needed them.",
+    author: "Head of IT, Manufacturing Company, Lagos",
+    sector: "Manufacturing",
+  },
+  {
+    quote:  "Their NDPA compliance advisory saved us months of uncertainty. They understand both the technology and the Nigerian regulatory environment.",
+    author: "Managing Partner, Professional Services Firm",
+    sector: "Professional Services",
+  },
   {
     quote:  "Inter5 gave us something no other IT company had offered a tested disaster recovery plan and a team that picked up the phone when we needed them.",
     author: "Head of IT, Manufacturing Company, Lagos",

@@ -1,6 +1,7 @@
 // components/BookAssessmentForm.tsx
 "use client";
-import { useState } from "react";
+
+import { useState, FormEvent } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 interface FormData {
@@ -10,16 +11,26 @@ interface FormData {
   companyName: string;
   industry: string;
   employeeCount: string;
-  serviceInterest: string;
-  message: string;
-  hearAboutUs: string;
+  itChallenges: string;
+  preferredContact: string;
+  bestTimeToContact: string;
+  agreeToTerms: boolean;
 }
 
 interface FormErrors {
-  [key: string]: string;
+  fullName?: string;
+  email?: string;
+  phone?: string;
+  companyName?: string;
+  industry?: string;
+  employeeCount?: string;
+  itChallenges?: string;
+  preferredContact?: string;
+  bestTimeToContact?: string;
+  agreeToTerms?: string;
 }
 
-const INDUSTRIES = [
+const industries = [
   "Manufacturing",
   "Oil & Gas",
   "Construction",
@@ -27,34 +38,113 @@ const INDUSTRIES = [
   "Healthcare",
   "Education",
   "Retail",
-  "Other",
+  "Technology",
+  "Other"
 ];
 
-const SERVICE_OPTIONS = [
-  "Managed IT Services",
-  "Cybersecurity (CyberShield)",
-  "IT Support & Maintenance (ManagedIT)",
-  "Business Continuity (BizShield)",
-  "Cloud Services",
-  "Not sure — need assessment",
+const employeeRanges = [
+  "1-10",
+  "11-50",
+  "51-200",
+  "201-500",
+  "500+"
 ];
 
-const EMPLOYEE_RANGES = [
-  "1-10 employees",
-  "11-50 employees",
-  "51-200 employees",
-  "201-500 employees",
-  "500+ employees",
+const contactMethods = [
+  "Email",
+  "Phone",
+  "WhatsApp"
 ];
 
-const HEAR_ABOUT_OPTIONS = [
-  "Google Search",
-  "LinkedIn",
-  "Referral",
-  "Social Media",
-  "Industry Event",
-  "Other",
+const timeSlots = [
+  "Morning (9AM - 12PM)",
+  "Afternoon (12PM - 4PM)",
+  "Evening (4PM - 7PM)",
+  "Any time"
 ];
+
+// Modal Component
+function FeedbackModal({ 
+  isOpen, 
+  onClose, 
+  type, 
+  message,
+  onRetry 
+}: { 
+  isOpen: boolean; 
+  onClose: () => void; 
+  type: "success" | "error"; 
+  message: string;
+  onRetry?: () => void;
+}) {
+  return (
+    <AnimatePresence>
+      {isOpen && (
+        <>
+          {/* Backdrop */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={onClose}
+            className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50"
+          />
+          
+          {/* Modal */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9, y: 20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.9, y: 20 }}
+            transition={{ type: "spring", damping: 25, stiffness: 300 }}
+            className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50 w-full max-w-md mx-4"
+          >
+            <div className="bg-white rounded-2xl shadow-2xl overflow-hidden">
+              {/* Header with gradient */}
+              <div className={`p-6 text-center ${
+                type === "success" ? "bg-gradient-to-br from-green-500 to-green-600" : "bg-gradient-to-br from-red-500 to-red-600"
+              }`}>
+                <motion.div
+                  initial={{ scale: 0 }}
+                  animate={{ scale: 1 }}
+                  transition={{ delay: 0.1, type: "spring", stiffness: 200 }}
+                  className="w-20 h-20 bg-white rounded-full flex items-center justify-center mx-auto mb-4"
+                >
+                  {type === "success" ? (
+                    <svg className="w-10 h-10 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                  ) : (
+                    <svg className="w-10 h-10 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                  )}
+                </motion.div>
+                <h3 className="text-white text-2xl font-bold mb-2">
+                  {type === "success" ? "Success!" : "Oops!"}
+                </h3>
+              </div>
+              
+              {/* Body */}
+              <div className="p-6 text-center">
+                <p className="text-gray-600 mb-6">{message}</p>
+                <button
+                  onClick={type === "success" ? onClose : onRetry}
+                  className={`w-full py-3 rounded-lg font-semibold transition-all duration-300 ${
+                    type === "success"
+                      ? "bg-green-500 hover:bg-green-600 text-white"
+                      : "bg-brand-orange hover:bg-brand-orange/90 text-white"
+                  }`}
+                >
+                  {type === "success" ? "Got it, thanks!" : "Try Again"}
+                </button>
+              </div>
+            </div>
+          </motion.div>
+        </>
+      )}
+    </AnimatePresence>
+  );
+}
 
 export default function BookAssessmentForm() {
   const [formData, setFormData] = useState<FormData>({
@@ -64,364 +154,451 @@ export default function BookAssessmentForm() {
     companyName: "",
     industry: "",
     employeeCount: "",
-    serviceInterest: "",
-    message: "",
-    hearAboutUs: "",
+    itChallenges: "",
+    preferredContact: "",
+    bestTimeToContact: "",
+    agreeToTerms: false
   });
 
   const [errors, setErrors] = useState<FormErrors>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle");
-  const [errorMessage, setErrorMessage] = useState("");
+  const [modalOpen, setModalOpen] = useState(false);
+  const [modalType, setModalType] = useState<"success" | "error">("success");
+  const [modalMessage, setModalMessage] = useState("");
+
+  // Validation functions
+  const validateEmail = (email: string): boolean => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
+
+  const validatePhone = (phone: string): boolean => {
+    const phoneRegex = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/;
+    return phoneRegex.test(phone);
+  };
 
   const validateForm = (): boolean => {
     const newErrors: FormErrors = {};
 
-    if (!formData.fullName.trim()) newErrors.fullName = "Full name is required";
-    if (!formData.email.trim()) {
-      newErrors.email = "Email is required";
-    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-      newErrors.email = "Email is invalid";
+    // Full Name validation
+    if (!formData.fullName.trim()) {
+      newErrors.fullName = "Full name is required";
+    } else if (formData.fullName.trim().length < 2) {
+      newErrors.fullName = "Name must be at least 2 characters";
     }
-    if (!formData.phone.trim()) newErrors.phone = "Phone number is required";
-    if (!formData.companyName.trim()) newErrors.companyName = "Company name is required";
-    if (!formData.industry) newErrors.industry = "Please select your industry";
-    if (!formData.serviceInterest) newErrors.serviceInterest = "Please select a service interest";
+
+    // Email validation
+    if (!formData.email.trim()) {
+      newErrors.email = "Email address is required";
+    } else if (!validateEmail(formData.email)) {
+      newErrors.email = "Please enter a valid email address";
+    }
+
+    // Phone validation
+    if (!formData.phone.trim()) {
+      newErrors.phone = "Phone number is required";
+    } else if (!validatePhone(formData.phone)) {
+      newErrors.phone = "Please enter a valid phone number";
+    }
+
+    // Company Name validation
+    if (!formData.companyName.trim()) {
+      newErrors.companyName = "Company name is required";
+    }
+
+    // Industry validation
+    if (!formData.industry) {
+      newErrors.industry = "Please select your industry";
+    }
+
+    // Employee count validation
+    if (!formData.employeeCount) {
+      newErrors.employeeCount = "Please select employee range";
+    }
+
+    // IT Challenges validation
+    if (!formData.itChallenges.trim()) {
+      newErrors.itChallenges = "Please describe your IT challenges";
+    } else if (formData.itChallenges.trim().length < 10) {
+      newErrors.itChallenges = "Please provide more details (minimum 10 characters)";
+    }
+
+    // Preferred contact validation
+    if (!formData.preferredContact) {
+      newErrors.preferredContact = "Please select preferred contact method";
+    }
+
+    // Best time to contact validation
+    if (!formData.bestTimeToContact) {
+      newErrors.bestTimeToContact = "Please select preferred contact time";
+    }
+
+    // Terms validation
+    if (!formData.agreeToTerms) {
+      newErrors.agreeToTerms = "You must agree to the terms";
+    }
 
     setErrors(newErrors);
+    
+    if (Object.keys(newErrors).length > 0) {
+      // Show error modal for validation failures
+      setModalType("error");
+      setModalMessage("Please fix the errors in the form before submitting.");
+      setModalOpen(true);
+    }
+    
     return Object.keys(newErrors).length === 0;
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
-    if (errors[name]) {
-      setErrors(prev => ({ ...prev, [name]: "" }));
+    const { name, value, type } = e.target;
+    const checked = (e.target as HTMLInputElement).checked;
+    
+    setFormData(prev => ({
+      ...prev,
+      [name]: type === "checkbox" ? checked : value
+    }));
+
+    // Clear error for this field when user starts typing
+    if (errors[name as keyof FormErrors]) {
+      setErrors(prev => ({ ...prev, [name]: undefined }));
     }
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const resetForm = () => {
+    setFormData({
+      fullName: "",
+      email: "",
+      phone: "",
+      companyName: "",
+      industry: "",
+      employeeCount: "",
+      itChallenges: "",
+      preferredContact: "",
+      bestTimeToContact: "",
+      agreeToTerms: false
+    });
+  };
+
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     
     if (!validateForm()) {
+      // Scroll to first error
+      const firstError = document.querySelector(".error-message");
+      if (firstError) {
+        firstError.scrollIntoView({ behavior: "smooth", block: "center" });
+      }
       return;
     }
 
     setIsSubmitting(true);
-    setSubmitStatus("idle");
 
     try {
-      // Replace with your FormsFree endpoint
-      const FORMSFREE_ENDPOINT = "https://formsfree.io/api/submit/YOUR_FORM_ID";
-      
-      // You can also use a simple webhook service like:
-      // - https://formspree.io/
-      // - https://formsubmit.co/
-      // - https://getform.io/
-      
-      const response = await fetch(FORMSFREE_ENDPOINT, {
+      // Prepare data for Formspree
+      const formDataToSend = new FormData();
+      formDataToSend.append("fullName", formData.fullName);
+      formDataToSend.append("email", formData.email);
+      formDataToSend.append("phone", formData.phone);
+      formDataToSend.append("companyName", formData.companyName);
+      formDataToSend.append("industry", formData.industry);
+      formDataToSend.append("employeeCount", formData.employeeCount);
+      formDataToSend.append("itChallenges", formData.itChallenges);
+      formDataToSend.append("preferredContact", formData.preferredContact);
+      formDataToSend.append("bestTimeToContact", formData.bestTimeToContact);
+      formDataToSend.append("_replyto", formData.email);
+      formDataToSend.append("_subject", `New IT Assessment Request from ${formData.companyName}`);
+
+      const response = await fetch("https://formspree.io/f/xykbvvjy", {
         method: "POST",
+        body: formDataToSend,
         headers: {
-          "Content-Type": "application/json",
-          "Accept": "application/json",
-        },
-        body: JSON.stringify({
-          ...formData,
-          _subject: `New Assessment Request from ${formData.companyName}`,
-          _replyto: formData.email,
-          // FormsFree specific fields
-          formId: "book-assessment",
-          timestamp: new Date().toISOString(),
-        }),
+          "Accept": "application/json"
+        }
       });
 
       if (response.ok) {
-        setSubmitStatus("success");
-        setFormData({
-          fullName: "",
-          email: "",
-          phone: "",
-          companyName: "",
-          industry: "",
-          employeeCount: "",
-          serviceInterest: "",
-          message: "",
-          hearAboutUs: "",
-        });
+        setModalType("success");
+        setModalMessage("Thank you! We'll review your request and get back to you within 24 hours.");
+        setModalOpen(true);
+        resetForm();
       } else {
-        throw new Error("Submission failed");
+        throw new Error("Form submission failed");
       }
     } catch (error) {
-      console.error("Form submission error:", error);
-      setSubmitStatus("error");
-      setErrorMessage("There was an error submitting your request. Please try again or call us directly.");
+      setModalType("error");
+      setModalMessage("Something went wrong. Please try again or contact us directly at info@inter5it.com");
+      setModalOpen(true);
     } finally {
       setIsSubmitting(false);
     }
   };
 
+  const handleRetry = () => {
+    setModalOpen(false);
+    // Focus on submit button or scroll to form
+    const submitButton = document.querySelector('button[type="submit"]');
+    if (submitButton) {
+      submitButton.scrollIntoView({ behavior: "smooth", block: "center" });
+    }
+  };
+
   return (
-    <form onSubmit={handleSubmit} className="space-y-6">
-      <AnimatePresence>
-        {submitStatus === "success" && (
-          <motion.div
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            className="bg-green-50 border border-green-200 rounded-lg p-4 mb-6"
-          >
-            <div className="flex items-start gap-3">
-              <svg className="w-5 h-5 text-green-600 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
-              <div>
-                <h4 className="font-semibold text-green-800">Assessment Request Received!</h4>
-                <p className="text-sm text-green-700 mt-1">
-                  Thank you for reaching out. Our team will contact you within 24 hours to schedule your free assessment.
-                </p>
-              </div>
-            </div>
-          </motion.div>
-        )}
-
-        {submitStatus === "error" && (
-          <motion.div
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            className="bg-red-50 border border-red-200 rounded-lg p-4 mb-6"
-          >
-            <div className="flex items-start gap-3">
-              <svg className="w-5 h-5 text-red-600 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
-              <div>
-                <h4 className="font-semibold text-red-800">Submission Failed</h4>
-                <p className="text-sm text-red-700 mt-1">{errorMessage}</p>
-                <button
-                  type="button"
-                  onClick={() => setSubmitStatus("idle")}
-                  className="text-sm text-red-700 underline mt-2"
-                >
-                  Try again
-                </button>
-              </div>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <>
+      <form onSubmit={handleSubmit} className="space-y-6">
         {/* Full Name */}
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
-            Full Name *
+          <label htmlFor="fullName" className="block text-sm font-semibold text-gray-700 mb-2">
+            Full Name <span className="text-brand-orange">*</span>
           </label>
           <input
             type="text"
+            id="fullName"
             name="fullName"
             value={formData.fullName}
             onChange={handleChange}
-            className={cn(
-              "w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-amber-500 outline-none transition",
-              errors.fullName ? "border-red-300 bg-red-50" : "border-gray-300"
-            )}
+            className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-brand-orange focus:border-brand-orange transition-colors ${
+              errors.fullName ? "border-red-500" : "border-gray-300"
+            }`}
             placeholder="John Doe"
           />
           {errors.fullName && (
-            <p className="text-red-600 text-xs mt-1">{errors.fullName}</p>
+            <p className="error-message text-red-500 text-xs mt-1">{errors.fullName}</p>
           )}
         </div>
 
         {/* Email */}
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
-            Email Address *
+          <label htmlFor="email" className="block text-sm font-semibold text-gray-700 mb-2">
+            Email Address <span className="text-brand-orange">*</span>
           </label>
           <input
             type="email"
+            id="email"
             name="email"
             value={formData.email}
             onChange={handleChange}
-            className={cn(
-              "w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-amber-500 outline-none transition",
-              errors.email ? "border-red-300 bg-red-50" : "border-gray-300"
-            )}
+            className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-brand-orange focus:border-brand-orange transition-colors ${
+              errors.email ? "border-red-500" : "border-gray-300"
+            }`}
             placeholder="john@company.com"
           />
           {errors.email && (
-            <p className="text-red-600 text-xs mt-1">{errors.email}</p>
+            <p className="error-message text-red-500 text-xs mt-1">{errors.email}</p>
           )}
         </div>
 
         {/* Phone */}
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
-            Phone Number *
+          <label htmlFor="phone" className="block text-sm font-semibold text-gray-700 mb-2">
+            Phone Number <span className="text-brand-orange">*</span>
           </label>
           <input
             type="tel"
+            id="phone"
             name="phone"
             value={formData.phone}
             onChange={handleChange}
-            className={cn(
-              "w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-amber-500 outline-none transition",
-              errors.phone ? "border-red-300 bg-red-50" : "border-gray-300"
-            )}
-            placeholder="+234 XXX XXX XXXX"
+            className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-brand-orange focus:border-brand-orange transition-colors ${
+              errors.phone ? "border-red-500" : "border-gray-300"
+            }`}
+            placeholder="+234 123 456 7890"
           />
           {errors.phone && (
-            <p className="text-red-600 text-xs mt-1">{errors.phone}</p>
+            <p className="error-message text-red-500 text-xs mt-1">{errors.phone}</p>
           )}
         </div>
 
         {/* Company Name */}
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
-            Company Name *
+          <label htmlFor="companyName" className="block text-sm font-semibold text-gray-700 mb-2">
+            Company Name <span className="text-brand-orange">*</span>
           </label>
           <input
             type="text"
+            id="companyName"
             name="companyName"
             value={formData.companyName}
             onChange={handleChange}
-            className={cn(
-              "w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-amber-500 outline-none transition",
-              errors.companyName ? "border-red-300 bg-red-50" : "border-gray-300"
-            )}
+            className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-brand-orange focus:border-brand-orange transition-colors ${
+              errors.companyName ? "border-red-500" : "border-gray-300"
+            }`}
             placeholder="Your Company Ltd"
           />
           {errors.companyName && (
-            <p className="text-red-600 text-xs mt-1">{errors.companyName}</p>
+            <p className="error-message text-red-500 text-xs mt-1">{errors.companyName}</p>
           )}
         </div>
 
         {/* Industry */}
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
-            Industry *
+          <label htmlFor="industry" className="block text-sm font-semibold text-gray-700 mb-2">
+            Industry <span className="text-brand-orange">*</span>
           </label>
           <select
+            id="industry"
             name="industry"
             value={formData.industry}
             onChange={handleChange}
-            className={cn(
-              "w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-amber-500 outline-none transition bg-white",
-              errors.industry ? "border-red-300 bg-red-50" : "border-gray-300"
-            )}
+            className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-brand-orange focus:border-brand-orange transition-colors ${
+              errors.industry ? "border-red-500" : "border-gray-300"
+            }`}
           >
             <option value="">Select industry</option>
-            {INDUSTRIES.map(industry => (
+            {industries.map(industry => (
               <option key={industry} value={industry}>{industry}</option>
             ))}
           </select>
           {errors.industry && (
-            <p className="text-red-600 text-xs mt-1">{errors.industry}</p>
+            <p className="error-message text-red-500 text-xs mt-1">{errors.industry}</p>
           )}
         </div>
 
         {/* Employee Count */}
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
-            Number of Employees
+          <label htmlFor="employeeCount" className="block text-sm font-semibold text-gray-700 mb-2">
+            Number of Employees <span className="text-brand-orange">*</span>
           </label>
           <select
+            id="employeeCount"
             name="employeeCount"
             value={formData.employeeCount}
             onChange={handleChange}
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-amber-500 outline-none transition bg-white"
+            className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-brand-orange focus:border-brand-orange transition-colors ${
+              errors.employeeCount ? "border-red-500" : "border-gray-300"
+            }`}
           >
             <option value="">Select range</option>
-            {EMPLOYEE_RANGES.map(range => (
-              <option key={range} value={range}>{range}</option>
+            {employeeRanges.map(range => (
+              <option key={range} value={range}>{range} employees</option>
             ))}
           </select>
-        </div>
-
-        {/* Service Interest */}
-        <div className="md:col-span-2">
-          <label className="block text-sm font-medium text-gray-700 mb-2">
-            Service of Interest *
-          </label>
-          <select
-            name="serviceInterest"
-            value={formData.serviceInterest}
-            onChange={handleChange}
-            className={cn(
-              "w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-amber-500 outline-none transition bg-white",
-              errors.serviceInterest ? "border-red-300 bg-red-50" : "border-gray-300"
-            )}
-          >
-            <option value="">Select a service</option>
-            {SERVICE_OPTIONS.map(service => (
-              <option key={service} value={service}>{service}</option>
-            ))}
-          </select>
-          {errors.serviceInterest && (
-            <p className="text-red-600 text-xs mt-1">{errors.serviceInterest}</p>
+          {errors.employeeCount && (
+            <p className="error-message text-red-500 text-xs mt-1">{errors.employeeCount}</p>
           )}
         </div>
 
-        {/* How did you hear about us */}
-        <div className="md:col-span-2">
-          <label className="block text-sm font-medium text-gray-700 mb-2">
-            How did you hear about us?
-          </label>
-          <select
-            name="hearAboutUs"
-            value={formData.hearAboutUs}
-            onChange={handleChange}
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-amber-500 outline-none transition bg-white"
-          >
-            <option value="">Select an option</option>
-            {HEAR_ABOUT_OPTIONS.map(option => (
-              <option key={option} value={option}>{option}</option>
-            ))}
-          </select>
-        </div>
-
-        {/* Message */}
-        <div className="md:col-span-2">
-          <label className="block text-sm font-medium text-gray-700 mb-2">
-            Additional Information
+        {/* IT Challenges */}
+        <div>
+          <label htmlFor="itChallenges" className="block text-sm font-semibold text-gray-700 mb-2">
+            What IT challenges is your business facing? <span className="text-brand-orange">*</span>
           </label>
           <textarea
-            name="message"
-            value={formData.message}
+            id="itChallenges"
+            name="itChallenges"
+            value={formData.itChallenges}
             onChange={handleChange}
             rows={4}
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-amber-500 outline-none transition"
-            placeholder="Tell us about your current IT challenges, specific concerns, or what you'd like to achieve..."
+            className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-brand-orange focus:border-brand-orange transition-colors ${
+              errors.itChallenges ? "border-red-500" : "border-gray-300"
+            }`}
+            placeholder="Please describe your current IT challenges, concerns, or goals..."
           />
+          {errors.itChallenges && (
+            <p className="error-message text-red-500 text-xs mt-1">{errors.itChallenges}</p>
+          )}
         </div>
-      </div>
 
-      <button
-        type="submit"
-        disabled={isSubmitting}
-        className="w-full bg-amber-600 hover:bg-amber-700 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed shadow-sm hover:shadow-md"
-      >
-        {isSubmitting ? (
-          <span className="flex items-center justify-center gap-2">
-            <svg className="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-              <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-              <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-            </svg>
-            Submitting...
-          </span>
-        ) : (
-          "Request Free Assessment →"
+        {/* Preferred Contact Method */}
+        <div>
+          <label htmlFor="preferredContact" className="block text-sm font-semibold text-gray-700 mb-2">
+            Preferred Contact Method <span className="text-brand-orange">*</span>
+          </label>
+          <select
+            id="preferredContact"
+            name="preferredContact"
+            value={formData.preferredContact}
+            onChange={handleChange}
+            className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-brand-orange focus:border-brand-orange transition-colors ${
+              errors.preferredContact ? "border-red-500" : "border-gray-300"
+            }`}
+          >
+            <option value="">Select method</option>
+            {contactMethods.map(method => (
+              <option key={method} value={method}>{method}</option>
+            ))}
+          </select>
+          {errors.preferredContact && (
+            <p className="error-message text-red-500 text-xs mt-1">{errors.preferredContact}</p>
+          )}
+        </div>
+
+        {/* Best Time to Contact */}
+        <div>
+          <label htmlFor="bestTimeToContact" className="block text-sm font-semibold text-gray-700 mb-2">
+            Best Time to Contact <span className="text-brand-orange">*</span>
+          </label>
+          <select
+            id="bestTimeToContact"
+            name="bestTimeToContact"
+            value={formData.bestTimeToContact}
+            onChange={handleChange}
+            className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-brand-orange focus:border-brand-orange transition-colors ${
+              errors.bestTimeToContact ? "border-red-500" : "border-gray-300"
+            }`}
+          >
+            <option value="">Select time slot</option>
+            {timeSlots.map(slot => (
+              <option key={slot} value={slot}>{slot}</option>
+            ))}
+          </select>
+          {errors.bestTimeToContact && (
+            <p className="error-message text-red-500 text-xs mt-1">{errors.bestTimeToContact}</p>
+          )}
+        </div>
+
+        {/* Terms and Conditions */}
+        <div className="flex items-start gap-3">
+          <input
+            type="checkbox"
+            id="agreeToTerms"
+            name="agreeToTerms"
+            checked={formData.agreeToTerms}
+            onChange={handleChange}
+            className={`mt-1 w-4 h-4 rounded focus:ring-brand-orange ${
+              errors.agreeToTerms ? "border-red-500" : "border-gray-300"
+            }`}
+          />
+          <label htmlFor="agreeToTerms" className="text-sm text-gray-600">
+            I agree to the processing of my personal data and understand that an Inter5 representative will contact me regarding this assessment. <span className="text-brand-orange">*</span>
+          </label>
+        </div>
+        {errors.agreeToTerms && (
+          <p className="error-message text-red-500 text-xs mt-1">{errors.agreeToTerms}</p>
         )}
-      </button>
 
-      <p className="text-center text-xs text-gray-500 mt-4">
-        By submitting this form, you agree to our privacy policy. We will never share your information.
-      </p>
-    </form>
+        {/* Submit Button */}
+        <button
+          type="submit"
+          disabled={isSubmitting}
+          className="w-full bg-brand-orange hover:bg-brand-orange/90 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed shadow-lg hover:shadow-xl"
+        >
+          {isSubmitting ? (
+            <span className="flex items-center justify-center gap-2">
+              <svg className="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+              </svg>
+              Submitting...
+            </span>
+          ) : (
+            "Request Free Assessment "
+          )}
+        </button>
+
+        <p className="text-xs text-gray-400 text-center mt-4">
+          By submitting this form, you agree to our privacy policy. We will never share your information.
+        </p>
+      </form>
+
+      {/* Feedback Modal */}
+      <FeedbackModal
+        isOpen={modalOpen}
+        onClose={() => setModalOpen(false)}
+        type={modalType}
+        message={modalMessage}
+        onRetry={handleRetry}
+      />
+    </>
   );
-}
-
-// Helper function (if cn is not imported)
-function cn(...classes: (string | false | undefined)[]) {
-  return classes.filter(Boolean).join(' ');
 }

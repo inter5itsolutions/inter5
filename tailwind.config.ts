@@ -10,46 +10,32 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        background: "#ffffff",
-        foreground: "#171717",
-
-        // Navy palette - primary corporate color
-        navy: {
-          950: "#02070f",  // Deepest navy
-          900: "#040d1a",  // Primary dark navy
-          800: "#071529",  // Rich navy
-          700: "#0a1f3d",  // Medium-dark navy
-          600: "#0f2850",  // Medium navy
-          500: "#1a3a6e",  // Lighter navy
-          400: "#2a4a85",  // Navy with more visibility
-          300: "#3d5f9e",  // Soft navy
-          200: "#5c7db8",  // Muted navy
-          100: "#8aa5d1",  // Light navy tint
-        },
-
-        // Gold palette - accent color from logo
-        gold: {
-          700: "#7A3F00",  // Deep burnt orange (darkest)
-          600: "#A65500",  // Dark orange
-          500: "#FB8501",  // Primary brand color
-          400: "#FC9A2E",  // Bright orange
-          300: "#FDB35C",  // Soft orange
-          200: "#FEC98A",  // Light orange
-          100: "#FEE1B8",  // Very light tint
-          50:  "#FFF4E6",  // Soft creamy background
-        },
-
-        // Neutral palette for hierarchy
-        charcoal: {
-          900: "#111111",
-          800: "#1a1a1a",
-          700: "#2b2b2b",
-          600: "#404040",
-          500: "#666666",
-          400: "#999999",
-          300: "#cccccc",
-          200: "#e5e5e5",
-          100: "#f5f5f5",
+        // Dark Blue - #023047
+        "dark-blue": "#023047",
+        
+        // Light Blue - #8ECAE6
+        "light-blue": "#8ECAE6",
+        
+        // Orange - #FB8500
+        "brand-orange": "#FB8500",
+        
+        // Teal Blue - #219EBC
+        "teal-blue": "#219EBC",
+        
+        // Basic neutrals for text and backgrounds
+        white: "#ffffff",
+        black: "#000000",
+        gray: {
+          50: "#f9fafb",
+          100: "#f3f4f6",
+          200: "#e5e7eb",
+          300: "#d1d5db",
+          400: "#9ca3af",
+          500: "#6b7280",
+          600: "#4b5563",
+          700: "#374151",
+          800: "#1f2937",
+          900: "#111827",
         },
       },
 
@@ -60,7 +46,6 @@ const config: Config = {
       },
 
       fontSize: {
-        // Custom heading scale
         "hero": ["5rem", { lineHeight: "1", fontWeight: "900" }],
         "hero-md": ["4rem", { lineHeight: "1.1", fontWeight: "900" }],
         "hero-sm": ["3rem", { lineHeight: "1.1", fontWeight: "800" }],
@@ -82,7 +67,7 @@ const config: Config = {
         "fade-in": "fadeIn 0.4s ease forwards",
         "fade-right": "fadeRight 0.5s ease forwards",
         "scale-in": "scaleIn 0.4s ease forwards",
-        "gold-shimmer": "goldShimmer 2s ease infinite",
+        "accent-shimmer": "accentShimmer 2s ease infinite",
       },
 
       keyframes: {
@@ -102,18 +87,19 @@ const config: Config = {
           "0%": { opacity: "0", transform: "scale(0.95)" },
           "100%": { opacity: "1", transform: "scale(1)" },
         },
-        goldShimmer: {
+        accentShimmer: {
           "0%, 100%": { opacity: "1" },
           "50%": { opacity: "0.7" },
         },
       },
 
       backgroundImage: {
-        "grid-pattern":
-          "linear-gradient(rgba(200,150,12,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(200,150,12,0.05) 1px, transparent 1px)",
-        "navy-gradient": "linear-gradient(135deg, #040d1a 0%, #071529 50%, #0a1f3d 100%)",
-        "gold-gradient": "linear-gradient(135deg, #C8960C 0%, #E8B840 50%, #F0C96A 100%)",
-        "hero-pattern": "radial-gradient(circle at 10% 20%, rgba(200,150,12,0.08) 0%, transparent 50%)",
+        "grid-pattern": "linear-gradient(rgba(2,48,71,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(2,48,71,0.05) 1px, transparent 1px)",
+        "primary-gradient": "linear-gradient(135deg, #023047 0%, #219EBC 100%)",
+        "secondary-gradient": "linear-gradient(135deg, #8ECAE6 0%, #219EBC 100%)",
+        "accent-gradient": "linear-gradient(135deg, #FB8500 0%, #FB8500 100%)",
+        "hero-pattern": "radial-gradient(circle at 10% 20%, rgba(251,133,0,0.08) 0%, transparent 50%)",
+        "blue-wave": "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3E%3Cpath fill='%23023047' fill-opacity='0.05' d='M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,122.7C672,117,768,139,864,154.7C960,171,1056,181,1152,165.3C1248,149,1344,107,1392,85.3L1440,64L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z'%3E%3C/path%3E%3C/svg%3E\")",
       },
 
       backgroundSize: {
@@ -125,6 +111,8 @@ const config: Config = {
         sm: "2px",
         DEFAULT: "4px",
         lg: "8px",
+        xl: "12px",
+        "2xl": "16px",
       },
 
       borderWidth: {
@@ -133,6 +121,12 @@ const config: Config = {
 
       transitionTimingFunction: {
         "brand": "cubic-bezier(0.4, 0, 0.2, 1)",
+      },
+
+      boxShadow: {
+        "accent": "0 4px 14px 0 rgba(251, 133, 0, 0.25)",
+        "primary": "0 4px 14px 0 rgba(2, 48, 71, 0.15)",
+        "secondary": "0 4px 14px 0 rgba(142, 202, 230, 0.25)",
       },
     },
   },

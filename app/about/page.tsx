@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { buildMetadata } from "@/lib/seo";
-import { PARTNERS, TEAM } from "@/lib/data";
 import PageHero         from "@/components/PageHero";
 import SectionHeader    from "@/components/SectionHeader";
 import AnimatedSection  from "@/components/AnimatedSection";
@@ -21,12 +21,7 @@ const VALUES = [
   { icon: "👥", name: "Customer Focus",  desc: "The client's operational reality shapes every recommendation. We understand production downtime, field operations, and Nigerian regulatory context." },
 ];
 
-const MILESTONES = [
-  { year: "Founded",    text: "Inter5 IT Solutions established in Lagos, Nigeria." },
-  { year: "Partners",   text: "Formal partnerships signed with Microsoft, Veeam, ESET, and Lenovo." },
-  { year: "Enterprise", text: "Trusted by Dangote Cement — one of Nigeria's largest manufacturers." },
-  { year: "Today",      text: "Serving manufacturing, oil & gas, construction, and professional services SMEs across Lagos." },
-];
+
 
 export default function AboutPage() {
   return (
@@ -36,9 +31,10 @@ export default function AboutPage() {
         title="Not just an IT company."
         highlight="IT company."
         subtitle="We built Inter5 specifically for Nigerian businesses that need enterprise-grade IT without enterprise-grade pricing — and a partner that actually stays."
+        backgroundImage="/contact.png" // Add your hero image path
       />
 
-      {/* Story */}
+      {/* Story with Image */}
       <section className="section-pad bg-white">
         <div className="container-wide grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           <AnimatedSection direction="left">
@@ -46,7 +42,7 @@ export default function AboutPage() {
               label="Our Story"
               title="Built for Nigerian business realities."
               highlight="Nigerian business realities."
-              subtitle="Every IT company in Lagos chases enterprise contracts. We chose a different path — building the only IT partner in the city designed from the ground up for SMEs in Nigeria's most vital sectors."
+              subtitle="Every IT company in Lagos chases enterprise contracts. We chose a different path building the only IT partner in the city designed from the ground up for SMEs in Nigeria's most vital sectors."
             />
             <p className="text-gray-600 text-base leading-relaxed mt-5">
               Inter5 was founded by technically proficient leaders who saw a clear gap: hundreds of thousands of
@@ -60,31 +56,36 @@ export default function AboutPage() {
             </p>
           </AnimatedSection>
 
-          {/* Milestones */}
           <AnimatedSection direction="right" delay={0.15}>
-            <div className="space-y-6">
-              {MILESTONES.map((m, i) => (
-                <div key={i} className="flex gap-5">
-                  <div className="flex flex-col items-center">
-                    <span className="w-8 h-8 bg-amber-100 border border-amber-300 flex items-center justify-center text-amber-700 text-xs font-mono flex-shrink-0 rounded">
-                      {String(i + 1).padStart(2, "0")}
-                    </span>
-                    {i < MILESTONES.length - 1 && <div className="w-px flex-1 bg-gray-200 mt-2" />}
-                  </div>
-                  <div className="pb-6">
-                    <p className="text-amber-600 text-xs font-mono tracking-widest uppercase mb-1 font-semibold">{m.year}</p>
-                    <p className="text-gray-700 text-base leading-relaxed">{m.text}</p>
-                  </div>
-                </div>
-              ))}
+            <div className="relative rounded-2xl overflow-hidden shadow-xl group">
+              <div className="relative h-[400px] md:h-[500px] w-full">
+                <Image
+                  src="/landing.png" // Add your story image path
+                  alt="Inter5 IT Solutions team at work"
+                  fill
+                  className="object-cover transition-transform duration-700 group-hover:scale-110"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-dark-blue/80 via-dark-blue/60 to-transparent" />
+              </div>
+              {/* Overlay with brand color */}
+              <div className="absolute inset-0 bg-gradient-to-t from-dark-blue/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              <div className="absolute bottom-0 left-0 right-0 p-6 transform translate-y-full group-hover:translate-y-0 transition-transform duration-500">
+                <p className="text-white text-sm font-semibold">Building Nigerian SMEs since 2015</p>
+              </div>
             </div>
           </AnimatedSection>
         </div>
       </section>
 
-      {/* Values */}
-      <section className="section-pad bg-gray-50 border-y border-gray-200">
-        <div className="container-wide">
+      {/* Values with Background Pattern */}
+      <section className="section-pad bg-gray-50 border-y border-gray-200 relative overflow-hidden">
+        {/* Background decoration */}
+        <div className="absolute inset-0 opacity-5">
+          <div className="absolute top-0 right-0 w-96 h-96 bg-orange rounded-full blur-3xl" />
+          <div className="absolute bottom-0 left-0 w-96 h-96 bg-teal-blue rounded-full blur-3xl" />
+        </div>
+        
+        <div className="container-wide relative z-10">
           <AnimatedSection className="mb-12">
             <SectionHeader
               label="Our Values"
@@ -97,9 +98,9 @@ export default function AboutPage() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
             {VALUES.map((v, i) => (
               <AnimatedSection key={v.name} delay={i * 0.08}>
-                <div className="bg-white border border-gray-200 rounded-lg p-6 h-full shadow-sm hover:shadow-md transition-shadow">
+                <div className="bg-white border border-gray-200 rounded-lg p-6 h-full shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1">
                   <span className="text-3xl block mb-4">{v.icon}</span>
-                  <h3 className="font-display font-bold text-amber-600 text-lg mb-3">{v.name}</h3>
+                  <h3 className="font-display font-bold text-orange text-lg mb-3">{v.name}</h3>
                   <p className="text-gray-600 text-sm leading-relaxed">{v.desc}</p>
                 </div>
               </AnimatedSection>
@@ -108,62 +109,69 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Team */}
+      {/* Team with Images */}
       <section className="section-pad bg-white">
         <div className="container-wide">
-          <AnimatedSection className="mb-12">
+          <AnimatedSection className="mb-12 text-center">
             <SectionHeader
               label="Our Team"
               title="The people behind your protection."
               highlight="your protection."
               subtitle="Inter5 is led by technically credentialed professionals not account managers who subcontract the work."
+              center
             />
           </AnimatedSection>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            {TEAM.map((member, i) => (
-              <AnimatedSection key={member.name} delay={i * 0.1}>
-                <div className="bg-gray-50 border border-gray-200 rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow">
-                  <div className="flex items-start gap-4 mb-4">
-                    <div className="w-14 h-14 bg-amber-100 border border-amber-200 rounded-lg flex items-center justify-center text-amber-700 font-display font-bold text-xl flex-shrink-0">
-                      {member.name.charAt(0)}
-                    </div>
-                    <div>
-                      <h3 className="text-gray-900 font-semibold text-lg">{member.name}</h3>
-                      <p className="text-amber-600 text-sm font-mono font-medium">{member.title}</p>
-                    </div>
-                  </div>
-                  <p className="text-gray-600 text-sm leading-relaxed mb-4">{member.bio}</p>
-                  <div className="flex flex-wrap gap-2">
-                    {member.creds.map((c) => (
-                      <span key={c} className="inline-block px-2 py-1 bg-gray-100 text-gray-700 text-xs rounded border border-gray-200">
-                        {c}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              </AnimatedSection>
-            ))}
-          </div>
         </div>
       </section>
 
-      {/* Partners */}
+      {/* Partners with Images */}
       <section className="py-16 bg-gray-50 border-y border-gray-200">
         <div className="container-wide">
-          <AnimatedSection className="mb-10 text-center">
-            <p className="text-amber-600 text-sm font-semibold uppercase tracking-wider mb-2">Technology Partners</p>
-            <p className="text-gray-600 text-base">Formal partnerships not just reseller agreements.</p>
+          <AnimatedSection className="mb-12 text-center">
+            <p className="text-orange text-sm font-semibold uppercase tracking-wider mb-2">Technology Partners</p>
+            <h2 className="font-display font-bold text-3xl md:text-4xl text-dark-blue mb-3">
+              Trusted by Industry Leaders
+            </h2>
+            <p className="text-gray-600 text-base max-w-2xl mx-auto">
+              Formal partnerships not just reseller agreements. We are backed by the best in the industry.
+            </p>
           </AnimatedSection>
-          <div className="flex flex-wrap items-center justify-center gap-12">
-            {PARTNERS.map((p) => (
-              <div key={p.name} className="flex flex-col items-center gap-2 group">
-                <div className="w-20 h-20 bg-white border-2 border-gray-200 rounded-xl flex items-center justify-center text-xl font-bold text-gray-500 group-hover:border-amber-300 group-hover:text-amber-600 transition-all duration-200 shadow-sm">
-                  {p.abbr}
-                </div>
-                <span className="text-sm text-gray-500 font-medium">{p.name}</span>
-              </div>
-            ))}
+          
+          
+        </div>
+      </section>
+
+      {/* Stats Section with Background Image */}
+      <section className="relative py-20 overflow-hidden">
+        {/* Background Image */}
+        <div className="absolute inset-0 z-0">
+          <Image
+            src="/images/about-stats-bg.jpg" // Add your stats background image
+            alt="Technology background"
+            fill
+            className="object-cover"
+          />
+          <div className="absolute inset-0 bg-dark-blue/85" />
+        </div>
+
+        <div className="container-wide relative z-10">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8 text-center">
+            <div className="text-white">
+              <div className="text-4xl md:text-5xl font-bold text-orange mb-2">500+</div>
+              <div className="text-sm uppercase tracking-wider opacity-90">Businesses Served</div>
+            </div>
+            <div className="text-white">
+              <div className="text-4xl md:text-5xl font-bold text-orange mb-2">24/7</div>
+              <div className="text-sm uppercase tracking-wider opacity-90">Support Available</div>
+            </div>
+            <div className="text-white">
+              <div className="text-4xl md:text-5xl font-bold text-orange mb-2">15+</div>
+              <div className="text-sm uppercase tracking-wider opacity-90">Years Experience</div>
+            </div>
+            <div className="text-white">
+              <div className="text-4xl md:text-5xl font-bold text-orange mb-2">100%</div>
+              <div className="text-sm uppercase tracking-wider opacity-90">Client Satisfaction</div>
+            </div>
           </div>
         </div>
       </section>

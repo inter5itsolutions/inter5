@@ -110,12 +110,12 @@ export default function SectorsSection() {
                 custom={i}
                 className="group"
               >
-                <div className="relative bg-gold-200 rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden">
+                <div className="relative bg-brand-orange rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden">
                   {/* Gradient overlay on hover */}
-                  <div className="absolute inset-0 bg-gradient-to-r from-gold-500/0 via-gold-500/0 to-gold-500/5 group-hover:opacity-100 transition-opacity duration-300" />
+                  <div className="absolute inset-0 bg-gradient-to-r from-brand-orange/0 via-brand-orange/0 to-brand-orange/5 group-hover:opacity-100 transition-opacity duration-300" />
                   
                   {/* Left accent border */}
-                  <div className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-gold-500 to-gold-600 transform scale-y-0 group-hover:scale-y-100 transition-transform duration-300 origin-top" />
+                  <div className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-brand-orange to-brand-orange transform scale-y-0 group-hover:scale-y-100 transition-transform duration-300 origin-top" />
                   
                   <div className="p-6 md:p-8">
                     <div className="flex items-start gap-5">
@@ -125,13 +125,13 @@ export default function SectorsSection() {
                         className="flex-shrink-0"
                       >
                         <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-gold-100 to-gold-50 flex items-center justify-center group-hover:from-gold-500 group-hover:to-gold-600 transition-all duration-300 shadow-md group-hover:shadow-lg">
-                          <IconComponent className="w-7 h-7 text-gold-600 group-hover:text-white transition-colors duration-300" />
+                          <IconComponent className="w-7 h-7 text-brand-orange group-hover:text-dark-blue transition-colors duration-300" />
                         </div>
                       </motion.div>
 
                       {/* Content */}
                       <div className="flex-1">
-                        <h3 className="font-display font-bold text-charcoal-700 text-xl mb-2 group-hover:text-gold-600 transition-colors duration-300">
+                        <h3 className="font-display font-bold text-dark-navy text-xl mb-2 group-hover:text-light-blue transition-colors duration-300">
                           {sector.name}
                         </h3>
                         <p className="text-charcoal-600 text-sm leading-relaxed">
@@ -173,8 +173,8 @@ export default function SectorsSection() {
                 whileHover={{ scale: 1.05, y: -5 }}
                 className="text-center group cursor-pointer"
               >
-                <div className="w-12 h-12 rounded-full bg-gold-100 flex items-center justify-center mx-auto mb-3 group-hover:bg-gold-500 transition-colors duration-300">
-                  <stat.icon className="w-5 h-5 text-gold-600 group-hover:text-white transition-colors duration-300" />
+                <div className="w-12 h-12 rounded-full bg-light-blue/60 flex items-center justify-center mx-auto mb-3 group-hover:bg-gold-500 transition-colors duration-300">
+                  <stat.icon className="w-5 h-5 text-brand-orange group-hover:text-white transition-colors duration-300" />
                 </div>
                 <div className="text-2xl md:text-3xl font-display font-bold text-charcoal-900 mb-1">
                   {stat.number}

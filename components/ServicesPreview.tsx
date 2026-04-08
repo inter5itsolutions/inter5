@@ -6,7 +6,7 @@ import AnimatedSection from "@/components/AnimatedSection";
 
 export default function ServicesPreview() {
   return (
-    <section className="section-pad bg-navy-50">
+    <section className="section-pad bg-gray-50">
       <div className="container-wide">
         <AnimatedSection className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-10">
           <SectionHeader
@@ -15,7 +15,7 @@ export default function ServicesPreview() {
             highlight="One trusted partner."
             subtitle="Every service is built on our Microsoft, Veeam, and ESET partnerships delivered with naira pricing and a team that follows up after every engagement."
           />
-          <Link href="/services" className="btn-outline flex-shrink-0 self-start md:self-auto">
+          <Link href="/cybershield" className="btn-outline flex-shrink-0 self-start md:self-auto">
             View All Services 
           </Link>
         </AnimatedSection>
