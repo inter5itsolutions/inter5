@@ -79,14 +79,14 @@ export default function Navbar() {
                 src="/inter5_logo.png"
                 alt={SITE.name}
                 fill
-                className="object-cover"
+                className="object-cover bg-brand-orange"
                 priority
               />
             </div>
             
             {/* Company Name */}
             <div className="flex flex-col">
-              <span className="font-display font-bold text-dark-blue text-lg tracking-tight group-hover:text-brand-orange transition-colors duration-300">
+              <span className="font-display font-bold  text-dark-blue text-lg tracking-tight group-hover:text-brand-orange transition-colors duration-300">
                 {SITE.shortName}
               </span>
               {!scrolled && (

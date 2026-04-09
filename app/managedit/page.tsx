@@ -31,9 +31,9 @@ const staggerContainer = {
 
 export default function ManagedITPage() {
   return (
-    <div className="bg-white">
+    <div className="bg-light-blue/40">
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-charcoal-900 via-charcoal-800 to-charcoal-900 text-white">
+      <section className="relative overflow-hidden bg-light-blue text-white py-4">
         <div className="absolute inset-0 bg-grid-pattern bg-grid opacity-10" />
         <div className="container-wide relative z-10 py-20 md:py-28 lg:py-32">
           <div className="max-w-4xl mx-auto text-center">
@@ -42,12 +42,12 @@ export default function ManagedITPage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
             >
-              <span className="inline-block px-3 py-1 bg-gold-500/20 text-gold-400 rounded-full text-sm font-mono mb-6">
+              <span className="inline-block px-3 py-1 bg-brand-orange /20  rounded-full text-sm font-mono mb-6">
                 Managed IT Services
               </span>
               <h1 className="text-3xl md:text-6xl font-display font-black mb-6 leading-tight">
                 Keep Your Business Running
-                <span className="text-gold-500 text-2xl md:text-4xl block mt-2">Without Costly Downtime</span>
+                <span className="text-brand-orange  text-2xl md:text-4xl block mt-2">Without Costly Downtime</span>
               </h1>
               <p className="text-md md:text-xl text-charcoal-300 mb-8 max-w-3xl mx-auto">
                 Your business depends on technology. When it fails, everything stops.
@@ -58,7 +58,7 @@ export default function ManagedITPage() {
                 className="flex flex-col md:flex-row justify-center"
               >
                 <Link
-                  href="/contact"
+                  href="/assessment"
                   className="inline-flex items-center text-[13px] md:text-xl gap-3 bg-red-500 hover:bg-red-600 text-white px-4 md:px-8 py-2 md:py-4 rounded-2xl font-semibold transition-all duration-300 shadow-xl"
                 >
                   <Calendar className="w-5 h-5 hidden md:block" />
@@ -103,7 +103,7 @@ export default function ManagedITPage() {
                   whileHover={{ y: -5 }}
                   className="bg-white p-6 rounded-xl shadow-lg text-center"
                 >
-                  <item.icon className="h-8 w-8 md:w-12 md:h-12 text-gold-500 mx-auto mb-4" />
+                  <item.icon className="h-8 w-8 md:w-12 md:h-12 text-brand-orange  mx-auto mb-4" />
                   <h3 className="text-md md:text-xl font-bold text-charcoal-900 mb-2">{item.title}</h3>
                   <p className="text-sm md:text-base text-charcoal-600">{item.description}</p>
                 </motion.div>
@@ -136,7 +136,7 @@ export default function ManagedITPage() {
               <p className="text-sm md:text-xl text-charcoal-600">To Downtime & Disorganized IT</p>
             </motion.div>
 
-            <motion.div variants={fadeInUp} className="bg-gradient-to-r from-charcoal-900 to-charcoal-800 text-white p-8 rounded-2xl mb-8">
+            <motion.div variants={fadeInUp} className="bg-gradient-to-r from-brand-orange to-light-blue text-white p-8 rounded-2xl mb-8">
               <p className="text-base md:text-lg mb-6">
                 Most SMEs in Nigeria struggle with unreliable IT systems — slow computers, sudden network issues, 
                 unplanned downtime, and zero documentation.
@@ -150,7 +150,7 @@ export default function ManagedITPage() {
                   "No one to call when things break"
                 ].map((issue, idx) => (
                   <div key={idx} className="flex items-center gap-3">
-                    <div className="w-2 h-2 bg-gold-500 rounded-full" />
+                    <div className="w-2 h-2 bg-brand-orange  rounded-full" />
                     <span className="text-sm md:text-base">{issue}</span>
                   </div>
                 ))}
@@ -158,8 +158,8 @@ export default function ManagedITPage() {
             </motion.div>
 
             <motion.div variants={fadeInUp} className="text-center">
-              <div className="inline-block p-4 bg-gold-50 rounded-full mb-4">
-                <Shield className="w-5 h-5 md:w-8 md:h-8 text-gold-500" />
+              <div className="inline-block p-4 bg-brand-orange rounded-full mb-4">
+                <Shield className="w-5 h-5 md:w-8 md:h-8 text-brand-orange " />
               </div>
               <p className="text-md md:text-lg text-charcoal-700 font-semibold">
                 Without a professional IT structure, small problems quickly escalate into costly disruptions.
@@ -203,7 +203,7 @@ export default function ManagedITPage() {
                   whileHover={{ scale: 1.05 }}
                   className={`${feature.color} p-6 rounded-xl shadow-md`}
                 >
-                  <feature.icon className="h-6 w-6 md:w-10 md:h-10 text-gold-600 mb-3" />
+                  <feature.icon className="h-6 w-6 md:w-10 md:h-10 text-brand-orange  mb-3" />
                   <h3 className="text-md md:text-lg font-bold text-charcoal-900">{feature.title}</h3>
                 </motion.div>
               ))}
@@ -211,7 +211,7 @@ export default function ManagedITPage() {
 
             <motion.div variants={fadeInUp} className="text-center">
               <div className="inline-block p-4 bg-white rounded-full shadow-lg mb-4">
-                <CheckCircle className="h-5 w-5 md:w-8 md:h-8 text-gold-500" />
+                <CheckCircle className="h-5 w-5 md:w-8 md:h-8 text-brand-orange " />
               </div>
               <p className="text-base md:text-xl text-charcoal-800 font-semibold">
                 Inter5 becomes your dependable IT partner, ensuring continuous operations, 
@@ -223,7 +223,7 @@ export default function ManagedITPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-10 bg-charcoal-900 text-white">
+      <section className="py-10 bg-light-blue text-white">
         <div className="container-wide text-center">
           <motion.div
             initial="hidden"

@@ -18,7 +18,7 @@ export default function Footer() {
         {/* Brand */}
         <div className="space-y-4">
           <div className="flex items-center gap-2">
-            <div className="w-9 h-9 bg-gold-500 rounded-md flex items-center justify-center text-white font-display font-bold text-sm">
+            <div className="w-9 h-9 bg-brand-orange rounded-md flex items-center justify-center text-white font-display font-bold text-sm">
               {SITE.logoText}
             </div>
             <span className="font-display font-semibold text-gray-900 text-lg">
@@ -42,7 +42,7 @@ export default function Footer() {
                 href={item.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-9 h-9 rounded-md border border-gray-300 flex items-center justify-center text-gray-500 hover:text-white hover:bg-gray-900 hover:border-gray-900 transition-all text-xs font-mono"
+                className="w-9 h-9 rounded-md bg-brand-orange border flex items-center justify-center text-white hover:text-white hover:bg-gray-900 hover:border-gray-900 transition-all text-xs font-mono"
               >
                 {item.label}
               </a>
