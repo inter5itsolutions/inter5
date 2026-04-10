@@ -66,8 +66,8 @@ export default function Navbar() {
         className={cn(
           "fixed top-0 inset-x-0 z-50 transition-all duration-500",
           scrolled
-            ? "bg-white/98 backdrop-blur-xl border-b border-brand-orange/20 shadow-lg py-3"
-            : "bg-white/95 backdrop-blur-md border-b border-brand-orange/10 shadow-sm py-4"
+            ? "bg-white backdrop-blur-xl border-b border-brand-orange/20 shadow-lg py-3"
+            : "bg-white backdrop-blur-md border-b border-brand-orange/10 shadow-sm py-4"
         )}
       >
         <div className="container-wide flex items-center justify-between">
@@ -90,7 +90,7 @@ export default function Navbar() {
                 {SITE.shortName}
               </span>
               {!scrolled && (
-                <span className="text-[10px] text-gray-400 tracking-wider uppercase hidden sm:block">
+                <span className="text-[10px] text-dark-blue tracking-wider uppercase hidden sm:block">
                   IT Solutions
                 </span>
               )}

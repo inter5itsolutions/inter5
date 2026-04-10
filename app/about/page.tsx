@@ -176,11 +176,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <CTABanner
-        title="Let's build your IT foundation."
-        subtitle="Talk to our team about your sector, your current setup, and what a structured IT partnership would look like for your business."
-        cta="Start the Conversation →"
-      />
+      <CTABanner/>
     </>
   );
 }

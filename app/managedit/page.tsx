@@ -15,6 +15,7 @@ import {
   Calendar,
   ChevronRight
 } from "lucide-react";
+import CTABanner from "@/components/CTABanner";
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 30 },
@@ -223,33 +224,7 @@ export default function ManagedITPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-10 bg-light-blue text-white">
-        <div className="container-wide text-center">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={fadeInUp}
-          >
-            <h2 className="text-2xl md:text-4xl font-display font-bold mb-4">
-              Book a Free Cybersecurity Risk Check
-            </h2>
-            <p className="text-sm md:text-xl text-charcoal-300 mb-8 max-w-2xl mx-auto">
-              Get a simple, non-technical review of vulnerabilities in your business.
-            </p>
-            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-              <Link
-                href="/assessment"
-                className="inline-flex items-center gap-3 bg-red-500 hover:bg-red-600 text-white md:px-8 px-4 md:py-4 py-2 rounded-lg font-semibold text-[11px] md:text-lg transition-all duration-300"
-              >
-                <Shield className="w-5 h-5 hidden md:block" />
-                  Click to Book Your Free Risk Check
-                <ChevronRight className="w-5 h-5" />
-              </Link>
-            </motion.div>
-          </motion.div>
-        </div>
-      </section>
+      <CTABanner />
     </div>
   );
 }

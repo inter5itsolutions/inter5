@@ -24,8 +24,6 @@ export default function HomePage() {
       <SectorsSection />
       <TestimonialsSection />
       {/* <FAQSection /> */}
-
-      
       <CTABanner />
     </>
   );

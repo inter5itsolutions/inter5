@@ -17,6 +17,7 @@ import {
   AlertTriangle,
   ChevronRight
 } from "lucide-react";
+import CTABanner from "@/components/CTABanner";
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 30 },
@@ -225,33 +226,7 @@ export default function BizShieldPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-charcoal-900 text-white">
-        <div className="container-wide text-center">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={fadeInUp}
-          >
-            <h2 className="text-xl md:text-4xl font-display font-bold mb-4">
-              Book a Free Business Continuity Consultation
-            </h2>
-            <p className="md:text-xl text-charcoal-300 mb-8 max-w-2xl mx-auto">
-              Find out how long your business can survive downtime and how to protect it.
-            </p>
-            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-              <Link
-                href="/assessment"
-                className="inline-flex items-center gap-3 bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 md:px-8 md:py-4 rounded-lg font-semibold text-[12px] md:text-lg transition-all duration-300"
-              >
-                <Calendar className="w-5 h-5 hidden md:block" />
-                Click to Book Your Free Consultation
-                <ChevronRight className="w-5 h-5" />
-              </Link>
-            </motion.div>
-          </motion.div>
-        </div>
-      </section>
+      <CTABanner />
     </div>
   );
 }
